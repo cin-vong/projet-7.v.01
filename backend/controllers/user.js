@@ -20,7 +20,7 @@ exports.signup = (req, res, next) => {
       bcrypt.hash(user.password, 10) 
       .then((hash) => {
           user.password = hash;
-          connection.query('SELECT * from users WHERE email=?', user.email, (err, result) => {
+          connection.query('SELECT * from user WHERE email=?', user.email, (err, result) => {
               if (err) {
                   console.log(err)
                   return res.status(400).json("Erreur interne")
@@ -28,7 +28,7 @@ exports.signup = (req, res, next) => {
               if(result.length >= 1) {
                   return res.status(500).json({ message: "Email déjà existante."});
               } else {
-                  connection.query(`INSERT INTO users SET ?`, user, (err, result) => {
+                  connection.query(`INSERT INTO user SET ?`, user, (err, result) => {
                       if (err) {
                           console.log(err)
                           return res.status(400).json("Erreur interne")
@@ -45,7 +45,7 @@ exports.signup = (req, res, next) => {
 exports.login = (req, res, next) => {
   const user = req.body
   if (user.email && user.password){
-    dbParams.query('SELECT * FROM users WHERE email = ?', user.email, function(err, results){
+    dbParams.query('SELECT * FROM user WHERE email = ?', user.email, function(err, results){
           if (err){
               console.log(err)
               return res.status(400).json("Erreur interne")
@@ -65,7 +65,7 @@ exports.login = (req, res, next) => {
                           roleAdmin: results[0].roleAdmin,
                           token: jwt.sign(
                           { id: results[0].id},
-                          process.env.TOKEN,
+                          'RANDOM_TOKEN_SECRET',
                           { expiresIn : '24h'}
                           ) 
                       })
@@ -81,7 +81,7 @@ exports.login = (req, res, next) => {
 
 exports.getOneUser = (req, res, next) => {
   const userId = req.params.id
-  dbParams.query('SELECT * FROM users WHERE id="'+userId+'"', function(err,result){
+  dbParams.query('SELECT * FROM user WHERE id="'+userId+'"', function(err,result){
     if (err){
         console.log(err);
         return res.status(400).json({ message : "Erreur interne" })
@@ -92,7 +92,7 @@ exports.getOneUser = (req, res, next) => {
 
 exports.deleteUser = (req, res, next) => {
   const userId = req.params.id
-  dbParams.query('DELETE FROM users WHERE id=?', userId, function(err,result){
+  dbParams.query('DELETE FROM user WHERE id=?', userId, function(err,result){
       if (err){
           console.log(err);
           return res.status(400).json({ message : "Erreur interne" })
