@@ -3,7 +3,7 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs');
 
 exports.createPost = (req, res, next) => {
-    const attachementUrl = req.file.filename;
+    const attachementUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     const createPost = {
         authorname: req.body.authorname,
         authorid: req.body.authorid,
