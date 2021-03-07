@@ -17,6 +17,7 @@ exports.signup = (req, res, next) => {
           return res.status(400).json("Erreur interne")
       }
       const user = req.body
+      console.log(user);
       bcrypt.hash(user.password, 10) 
       .then((hash) => {
           user.password = hash;
@@ -33,7 +34,7 @@ exports.signup = (req, res, next) => {
                           console.log(err)
                           return res.status(400).json("Erreur interne")
                       }
-                  return res.status(201).json({message : 'Compte déjà crée !'})
+                  return res.status(201).json({message : 'Compte crée avec succés !'})
                   });
                   connection.release();
               }
