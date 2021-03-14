@@ -3,14 +3,14 @@ const jwt = require('jsonwebtoken')
 const fs = require('fs');
 
 exports.createPost = (req, res, next) => {
-    const attachementUrl = `${req.protocol}://${req.get('host')}/images/${req.file.filename}`;
     const createPost = {
         authorname: req.body.authorname,
         authorid: req.body.authorid,
         title: req.body.title,
-        content: req.body.content,
-        attachement: attachementUrl
+        content: req.body.content
     }
+    console.log(createPost);
+
     dbParams.query('INSERT INTO post SET ?', createPost, (err, result) => {
         if (err) {
             console.log(err);
@@ -18,6 +18,17 @@ exports.createPost = (req, res, next) => {
         }
     return res.status(201).json({result, message: 'Votre message a bien été posté !' })
     })
+};
+
+exports.modifyOnePost = (req, res, next) => {
+    dbParams.query(`UPDATE posts SET title = '${req.body.title}', content = '${req.body.content}' WHERE posts.id = ${req.params.id}`, (error, result, field) => {
+        if (error) {
+            return res.status(400).json({
+                error
+            });
+        }
+        return res.status(200).json(result);
+    });
 };
 
 exports.getOnePost = (req, res, next) => {
@@ -32,9 +43,6 @@ exports.getOnePost = (req, res, next) => {
 };
 
 exports.getAllPost = (req, res, next) => {
-    const token = req.headers.authorization.split(' ')[1]
-    const decodedToken = jwt.verify(token, 'RANDOM_TOKEN_SECRET')
-    const userId = decodedToken.userId
     dbParams.query('SELECT * FROM post ORDER BY date DESC', [userId], (err, result) => {
         if(err) {
             console.log(err);
