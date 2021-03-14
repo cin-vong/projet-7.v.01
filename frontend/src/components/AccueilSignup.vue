@@ -1,9 +1,9 @@
 <template>
     <div class="signup">
-        <form>
+        <form @submit.prevent = signup()>
             <nav><router-link to="/signup" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
-            <label for="signup-nom">Nom :</label>
-            <input id="signup-nom" type="text" placeholder="Nom" required>
+            <label for="signup-username">Nom :</label>
+            <input id="signup-username" type="text" placeholder="Nom" required>
 
             <label for="signup-email">Email :</label>
             <input id="signup-email" type="email" placeholder="Email" required>
@@ -11,10 +11,8 @@
             <label for="signup-password">Mot de passe :</label>
             <input id="signup-password" type="password" placeholder="Mot de passe" required>
 
-            <label for="signup-role"> Role :</label>
-            <input id="signup-role" type="role" placeholder="Role" required>
-
-            <div class="error-message">{{message}}</div>
+            <label for="signup-password-verification">Vérification du mot de passe :</label>
+            <input id="signup-password-verification" type="password" placeholder="Vérifier mot de passe" required>
 
             <button id="signup-btn" type="submit">S'inscrire</button>
         </form>
@@ -22,6 +20,56 @@
 </template>
 
 <script>
+
+import axios from 'axios'
+export default {
+    name: 'AccueilSignup',
+    data(){
+      return{
+        username:"",
+        email:"",
+        password:"" 
+       }
+    },
+    methods: {
+        signup(){
+            const username = document.getElementById("signup-username").value;
+            const email = document.getElementById("signup-email").value;
+            const password = document.getElementById("signup-password").value;
+            const passwordVerif = document.getElementById("signup-password-verification").value;
+            
+
+            if(password === passwordVerif){
+                axios.post(`http://localhost:3000/api/user/signup`,
+                    {
+                        username,
+                        email,
+                        password
+                    },
+                    {
+                        headers: {
+                            'Content-Type': 'application/json'
+                        }
+                    }
+                )
+                .then(res => {
+                    if(res.status === 201) {
+                         location.href = '/';
+                    }
+                })
+                .catch((error) => {
+                    if (error.response.status === 401) {
+                        this.message = "Email non disponible.";
+                    }  
+                });
+            }
+            else if( password != passwordVerif){
+                this.message = "Vérifier le mot de passe";
+            }
+            
+        }
+    }
+}
 
     
 </script>
