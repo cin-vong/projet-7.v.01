@@ -42,7 +42,7 @@ export default {
             const postId = parseInt(this.$route.params.id);
             const content = document.getElementById('new-comment').value;
 
-            axios.post(`http://localhost:3000/api/posts/${postId}/comment/`,
+            axios.post(`http://localhost:3000/api/comment/${postId}`,
                 {
                     userId,
                     content
@@ -60,7 +60,7 @@ export default {
         getAllComments(){
             const postId = parseInt(this.$route.params.id);
 
-            axios.get(`${this.$apiUrl}/posts/${postId}/comments`,
+            axios.get(`http://localhost:3000/api/comment/${postId}/comments`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
@@ -74,7 +74,7 @@ export default {
         },
 
         deleteComment(commentId){
-            axios.delete(`${this.$apiUrl}/posts/comment/${commentId}`,
+            axios.delete(`${this.$apiUrl}/comment/${commentId}`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
