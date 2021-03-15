@@ -3,7 +3,7 @@
     <AccueilLogin v-if="!connected"/>
     <Header v-if="connected"/>
     <OnePost v-if="connected"/>
-
+    <NewPosts v-if="connected"/>
     <Comments v-if="connected"/>
   </div>
 </template>
@@ -14,7 +14,7 @@ import AccueilLogin from '@/components/AccueilLogin.vue';
 import Header from '@/components/Header.vue';
 import OnePost from '@/components/OnePost.vue';
 import Comments from '@/components/Comments.vue';
-
+import NewPosts from '@/components/NewPosts.vue';
 
 export default {
   name: 'Post',
@@ -23,7 +23,8 @@ export default {
     Header,
     AccueilLogin,
     OnePost,
-    Comments
+    Comments,
+    NewPosts
   },
 
   data() {
