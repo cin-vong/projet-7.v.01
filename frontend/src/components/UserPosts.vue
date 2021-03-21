@@ -29,13 +29,13 @@ export default {
 
     methods: {
         getUserPosts(){
-            const userId = this.$user.userId;
             
-            axios.get(`http://localhost:3000/api/posts/user${userId}`,
+            
+            axios.get(`http://localhost:3000/api/post`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer`
                     }
                 }
             )

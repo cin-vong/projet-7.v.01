@@ -1,6 +1,6 @@
 <template>
   <div class="signup">
-    <h1> Bienvenue !</h1>
+      <h1> Bienvenue !</h1>
       <img alt="Vue logo" src="../assets/logo.png">
     <AccueilSignup/>
   </div>

@@ -2,10 +2,9 @@
     <div class="login">
         <nav><router-link to="/signup" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
         <form @submit.prevent = login()>
-            <label for="login-email">Email :</label>
+
             <input id="login-email" type="text" placeholder="Email" required>
             
-            <label for="login-password">Mot de passe :</label>
             <input id="login-password" type="password" placeholder="Mot de passe" required>
 
             <button id="login-btn" type="submit">Connexion</button>
@@ -15,7 +14,7 @@
 </template>
 
 <script>
-
+import router from "../router"   
 import axios from 'axios'
 export default {
     name: 'AccueilLogin',
@@ -26,7 +25,6 @@ export default {
        }
     },
     methods: {
-
         login(){
             const email = document.getElementById("login-email").value;
             const password = document.getElementById("login-password").value;
@@ -43,8 +41,8 @@ export default {
                 }
             )
             .then(res => {
-                localStorage.setItem('user', JSON.stringify(res.data));
-                location.reload();
+               localStorage.setItem('user', JSON.stringify(res.data));
+                router.push("/profile")
             })
             .catch((error) => {
                 if (error.response.status === 404) {

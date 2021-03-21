@@ -1,8 +1,8 @@
 <template>
-    <div class="UserProfile">
+    <div class="profile">
         <div class="profile-info">
             <h2>Bonjour,</h2>
-            <span>{{this.$username}}</span>
+        
         </div>
 
         <div class="delete-profile" @click="deleteUser()">Supprimer le compte</div>
@@ -21,18 +21,17 @@ export default {
   methods: {
 
     deleteUser(){
-      const userId = this.$user.userId;
-
-      axios.delete(`http://localhost:3000/api/user/auth/${userId}`,
+  
+      axios.delete(`http://localhost:3000/api/user/profile`,
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer ${this.$token}`
+              'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
             }
           }
       )
       .then(localStorage.removeItem('user'))
-      .then(location.href = "/");
+      .then(location.href = "/login");
     }
 
   }

@@ -39,7 +39,7 @@ export default {
 
     methods: {
         getAllPost(){
-            axios.get(`http://localhost:3000/api/posts/`,
+            axios.get(`http://localhost:3000/api/post/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',

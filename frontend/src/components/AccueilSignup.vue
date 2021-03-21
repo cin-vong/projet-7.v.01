@@ -2,17 +2,13 @@
     <div class="signup">
         <form @submit.prevent = signup()>
             <nav><router-link to="/signup" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
-            <label for="signup-username">Nom :</label>
             <input id="signup-username" type="text" placeholder="Nom" required>
 
-            <label for="signup-email">Email :</label>
             <input id="signup-email" type="email" placeholder="Email" required>
 
-            <label for="signup-password">Mot de passe :</label>
             <input id="signup-password" type="password" placeholder="Mot de passe" required>
 
-            <label for="signup-password-verification">Vérification du mot de passe :</label>
-            <input id="signup-password-verification" type="password" placeholder="Vérifier mot de passe" required>
+            <input id="signup-password-verification" type="password" placeholder="Vérifier du mot de passe" required>
 
             <button id="signup-btn" type="submit">S'inscrire</button>
         </form>
@@ -20,7 +16,7 @@
 </template>
 
 <script>
-
+import router from "../router" 
 import axios from 'axios'
 export default {
     name: 'AccueilSignup',
@@ -54,7 +50,8 @@ export default {
                 )
                 .then(res => {
                     if(res.status === 201) {
-                         location.href = '/';
+                         localStorage.setItem('user', JSON.stringify(res.data));
+                         router.push("/profile")
                     }
                 })
                 .catch((error) => {

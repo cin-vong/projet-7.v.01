@@ -1,7 +1,7 @@
 <template>
-    <div class="Profile">
+    <div class="profile">
         <AccueilLogin v-if="!connected"/>
-        <Header v-if="connected"/>
+        <EnTete v-if="connected"/>
         <UserProfile v-if="connected"/>
         <UserPosts v-if="connected"/>
         
@@ -11,7 +11,7 @@
 <script>
 
 import AccueilLogin from '@/components/AccueilLogin.vue';
-import Header from '@/components/Header.vue';
+import EnTete from '@/components/EnTete.vue';
 import UserProfile from '@/components/UserProfile.vue';
 import UserPosts from '@/components/UserPosts.vue';
 
@@ -19,8 +19,8 @@ export default {
     name: 'Profile',
 
     components: {
-        LoginForm,
-        Header,
+        AccueilLogin,
+        EnTete,
         UserProfile,
         UserPosts
   },
