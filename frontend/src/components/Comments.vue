@@ -42,7 +42,7 @@ export default {
             const postId = parseInt(this.$route.params.id);
             const content = document.getElementById('new-comment').value;
 
-            axios.post(`http://localhost:3000/api/comment/${postId}`,
+            axios.post(`http://localhost:3000/api/comment/`,
                 {
                     userId,
                     content

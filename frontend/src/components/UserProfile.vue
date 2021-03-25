@@ -7,19 +7,16 @@
 
         <div class="delete-profile" @click="deleteUser()">Supprimer le compte</div>
 
-        <h3>Vos publications :</h3>
+        <router-link to="/post" class="active">Vos publications</router-link>
     </div>
 </template>
 
 <script>
+import router from "../router" 
 import axios from 'axios';
-
 export default {
-    name: 'UserProfile',
-
-
+  name: 'UserProfile',
   methods: {
-
     deleteUser(){
   
       axios.delete(`http://localhost:3000/api/user/profile`,
@@ -31,34 +28,28 @@ export default {
           }
       )
       .then(localStorage.removeItem('user'))
-      .then(location.href = "/login");
+      .then(router.push("/login"));
     }
-
   }
 }
 </script>
 
 <style scoped>
-
     .profile-info{
         margin: 50px auto;
         max-width: 800px;
         text-align: left;
     }
-
     .profile-info h2 {
         margin-bottom: 20px;
         font-size: 3rem;
     }
-
     .profile-info h3 {
       text-align: left;
     }
-
     .profile-info span {
         font-size: 3rem;
     }
-
     .delete-profile{
       color:  rgba(255, 0, 0, 0.301);
       margin-bottom: 30px;

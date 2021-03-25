@@ -16,13 +16,14 @@
 </template>
 
 <script>
+import router from "../router"
 export default {
     name: 'Entete',
 
     methods: {
         disconnect(){
             localStorage.removeItem('user');
-            location.href = "/login";
+            router.push("/login");
         }
     }
 }

@@ -1,5 +1,6 @@
 <template>
   <div class="post">
+   <img alt="Vue logo" src="../assets/logo.png">
     <AccueilLogin v-if="!connected"/>
     <EnTete v-if="connected"/>
     <OnePost v-if="connected"/>
