@@ -41,7 +41,7 @@ export default {
                 }
             )
             .then(res => {
-               localStorage.setItem('user', JSON.stringify(res.data));
+               localStorage.setItem('user','token' ,JSON.stringify(res.data.token));
                 router.push("/profile")
             })
             .catch((error) => {
