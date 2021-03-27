@@ -52,7 +52,7 @@ export default {
                     {
                         headers: {
                             'Content-Type': 'application/json',
-                            'Authorization': `Bearer ${this.$token}`
+                            'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                         }
                     }
                 )

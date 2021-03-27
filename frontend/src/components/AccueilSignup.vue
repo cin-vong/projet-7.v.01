@@ -1,7 +1,7 @@
 <template>
     <div class="signup">
         <form @submit.prevent = signup()>
-            <nav><router-link to="/signup" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
+            <nav><router-link to="/" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
             <input id="signup-username" type="text" placeholder="Nom" required>
 
             <input id="signup-email" type="email" placeholder="Email" required>

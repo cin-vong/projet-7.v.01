@@ -1,6 +1,6 @@
 <template>
     <div class="login">
-        <nav><router-link to="/signup" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
+        <nav><router-link to="/" class="active">Inscription</router-link> | <router-link to="/login">Connection</router-link></nav>
         <form @submit.prevent = login()>
 
             <input id="login-email" type="text" placeholder="Email" required>

@@ -45,18 +45,18 @@ export default {
         getOnePost(){
             const postId = this.$route.params.id;
             
-            axios.get(`http://localhost:3000/api/posts/${postId}`,
+            axios.get(`http://localhost:3000/api/posts/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                     }
                 }
             )
             .then(res => {
                 this.post = res.data[0];
 
-                if(this.$user.userId === this.post.userId || this.$user.admin == 1){
+                if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
                     this.authorized = true;
                  }
 

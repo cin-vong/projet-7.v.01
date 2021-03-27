@@ -11,8 +11,8 @@
 
         <div class="comments">
             <div class="comment" v-for="comment in comments" :key="comment.id">
-            <div class="comment-info">Par {{comment.prenom}} {{comment.nom}} le {{dateFormat(comment.date)}} 
-                <span @click="deleteComment(comment.id)" v-if="comment.userId == $user.userId || $user.admin == 1" :key="comment.id">Supprimer</span>
+            <div class="comment-info">Par {{comment.username}} le {{dateFormat(comment.date)}} 
+                <span @click="deleteComment(comment.id)" v-if="comment.userId == $user.userId || $user.roleadmin == 1" :key="comment.id">Supprimer</span>
             </div>
             {{comment.content}}
             </div>
@@ -50,7 +50,7 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                     }
                 }
             )
@@ -60,11 +60,11 @@ export default {
         getAllComments(){
             const postId = parseInt(this.$route.params.id);
 
-            axios.get(`http://localhost:3000/api/comment/${postId}/comments`,
+            axios.get(`http://localhost:3000/api/comment/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                     }
                 }
             )
@@ -74,11 +74,11 @@ export default {
         },
 
         deleteComment(commentId){
-            axios.delete(`${this.$apiUrl}/comment/${commentId}`,
+            axios.delete(`http://localhost:3000/api/comment/id`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                     }
                 }
             )
