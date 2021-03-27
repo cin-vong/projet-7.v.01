@@ -1,7 +1,7 @@
 <template>
     <div class="UserPost">
         <div  v-for= "post in posts" :key="post.id">
-            <router-link :to="{ name: 'Post', params: { id: post.id } }">
+            <router-link :to="{ authorname: 'Post', params: { id: post.authorid } }">
                 <div class="post">
                     {{post.title}}
                 </div> 
@@ -31,11 +31,11 @@ export default {
         getUserPosts(){
             
             
-            axios.get(`http://localhost:3000/api/post`,
+            axios.get(`http://localhost:3000/api/post/:id`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer`
+                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
                     }
                 }
             )

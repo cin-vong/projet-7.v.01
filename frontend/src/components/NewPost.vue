@@ -43,9 +43,9 @@ export default {
 
             console.log(content);
 
-            axios.post(`http://localhost:3000/api/posts/`,
+            axios.post(`http://localhost:3000/api/post/`,
                     {
-                        userId: this.$user.userId,
+                        authorid: this.$user.authorid,
                         title,
                         content
                     },

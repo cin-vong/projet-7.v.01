@@ -45,11 +45,11 @@ export default {
         getOnePost(){
             const postId = this.$route.params.id;
             
-            axios.get(`http://localhost:3000/api/posts/`,
+            axios.get(`http://localhost:3000/api/post/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
@@ -69,11 +69,11 @@ export default {
         deleteOnePost(){
             const postId = this.$route.params.id;
             
-            axios.delete(`http://localhost:3000/api/posts/${postId}`,
+            axios.delete(`http://localhost:3000/api/post/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
@@ -85,7 +85,7 @@ export default {
             const title = document.querySelector('#modify-title').value;
             const content = this.modifiedContent;
             
-            axios.put(`http://localhost:3000/api/posts/${postId}`,
+            axios.put(`http://localhost:3000/api/post/`,
                 {
                     postId,
                     title,
@@ -94,7 +94,7 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer ${this.$token}`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
