@@ -19,7 +19,7 @@ export default {
 
     data(){
         return{
-            posts: []
+            post: []
         }
     },
 
@@ -35,11 +35,11 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+                         'Authorization': `Bearer ${this.$token}`
                     }
                 }
             )
-            .then(res => this.posts = res.data)
+            .then(res => this.post = res.data)
         }
     }
 

@@ -3,7 +3,7 @@
         <article class="post" v-for = "post in posts" :key="post.id">
             <router-link :to="{ name: 'Post', params: { id: post.id } }">
                 <div class="post-header">
-                    <span class="post-info">Posté le {{dateFormat(post.date)}} par {{post.prenom}} {{post.nom}}</span>
+                    <span class="post-info">Posté le {{dateFormat(post.date)}} par {{post.username}}</span>
                     <span class="post-modify" v-if="post.id == $user.id || $user.roleAdmin == 1">Modifier</span> 
                 </div>  
                 <h2 class="post-title">{{post.title}}</h2>
@@ -32,7 +32,7 @@ export default {
         }
 
         //Export de la fonction
-        this.$root.$on('Posts', () => {
+        this.$root.$on('Post', () => {
             this.getAllPost();
         });
     },
@@ -48,7 +48,7 @@ export default {
                 }
             )
             .then(res => {
-                this.posts = res.data;
+                this.post = res.data;
             })
         },
 
