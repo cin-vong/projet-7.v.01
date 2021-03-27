@@ -2,7 +2,7 @@
     <div class="profile">
         <div class="profile-info">
             <h2>Bonjour,</h2>
-        
+        <span>{{username}}</span>
         </div>
 
         <div class="delete-profile" @click="deleteUser()">Supprimer le compte</div>
@@ -23,7 +23,7 @@ export default {
           {
             headers: {
               'Content-Type': 'application/json',
-              'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+              'Authorization': `Bearer ${this.$token}`
             }
           }
       )
