@@ -21,6 +21,7 @@ exports.signup = (req, res, next) => {
       bcrypt.hash(user.password, 10) 
       .then((hash) => {
           user.password = hash;
+          user.password_confirm = hash;
           connection.query('SELECT * from user WHERE email=?', user.email, (err, result) => {
               if (err) {
                   console.log(err)
