@@ -1,14 +1,14 @@
 <template>
     <div class="signup">
-        <form @submit.prevent = signup()>
-            <nav><router-link to="/" class="active">Inscrire</router-link> | <router-link to="/login">Connecter</router-link></nav>
-            <input id="signup-username" type="text" placeholder="Nom" required>
+        <form @submit.prevent = signup>
+            <nav><router-link to="/" class="active">Inscription</router-link> | <router-link to="/login">Connection</router-link></nav>
+            <input id="username" type="text" v-model="username" placeholder="Nom" required>
 
-            <input id="signup-email" type="email" placeholder="Email" required>
+            <input id="email" type="email" v-model="email" placeholder="Email" required>
 
-            <input id="signup-password" type="password" placeholder="Mot de passe" required>
+            <input id="password" type="password" v-model="password" placeholder="Mot de passe" required>
 
-            <input id="signup-password-verification" type="password" placeholder="Vérifier du mot de passe" required>
+            <input id="password_confirm" type="password" v-model="password_confirm" placeholder="Vérifier du mot de passe" required>
 
             <button id="signup-btn" type="submit">S'inscrire</button>
         </form>
@@ -16,54 +16,40 @@
 </template>
 
 <script>
-import router from "../router" 
 import axios from 'axios'
+import router from "../router" 
 export default {
     name: 'AccueilSignup',
     data(){
       return{
         username:"",
         email:"",
-        password:"" 
+        password:"",
+        password_confirm:"" 
        }
     },
     methods: {
         signup(){
-            const username = document.getElementById("signup-username").value;
-            const email = document.getElementById("signup-email").value;
-            const password = document.getElementById("signup-password").value;
-            const passwordVerif = document.getElementById("signup-password-verification").value;
+            const data = {
+                username: this.username,
+                email: this.email,
+                password: this.password,
+                password_confirm: this.password_confirm
+            };
             
 
-            if(password === passwordVerif){
-                axios.post(`http://localhost:3000/api/user/signup`,
-                    {
-                        username,
-                        email,
-                        password
-                    },
-                    {
-                        headers: {
-                            'Content-Type': 'application/json'
-                        }
-                    }
-                )
-                .then(res => {
-                    if(res.status === 201) {
-                         localStorage.setItem('user', JSON.stringify(res.data));
+            axios.post(`http://localhost:3000/api/user/signup`, data)
+                .then(
+                    res => {
+                        localStorage.setItem('user', JSON.stringify(res.data));
                          router.push("/profile")
+                        console.log(res)
                     }
-                })
-                .catch((error) => {
-                    if (error.response.status === 401) {
-                        this.message = "Email non disponible.";
-                    }  
-                });
-            }
-            else if( password != passwordVerif){
-                this.message = "Vérifier le mot de passe";
-            }
-            
+                ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )   
         }
     }
 }
