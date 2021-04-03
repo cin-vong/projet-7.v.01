@@ -50,7 +50,7 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
@@ -64,7 +64,7 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )
@@ -78,7 +78,7 @@ export default {
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                        'Authorization': `Bearer 'RANDOM_TOKEN_SECRET'`
+                        'Authorization': `Bearer ${token}`
                     }
                 }
             )

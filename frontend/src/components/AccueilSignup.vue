@@ -2,7 +2,9 @@
     <div class="signup">
         <form @submit.prevent = signup>
             <nav><router-link to="/" class="active">Inscription</router-link> | <router-link to="/login">Connection</router-link></nav>
-            <input id="username" type="text" v-model="username" placeholder="Nom" required>
+            <input id="nom" type="text" v-model="nom" placeholder="Nom" required>
+
+             <input id="prenom" type="text" v-model="prenom" placeholder="Prénom" required>
 
             <input id="email" type="email" v-model="email" placeholder="Email" required>
 
@@ -22,7 +24,8 @@ export default {
     name: 'AccueilSignup',
     data(){
       return{
-        username:"",
+        nom:"",
+        prenom:"",
         email:"",
         password:"",
         password_confirm:"" 
@@ -31,7 +34,8 @@ export default {
     methods: {
         signup(){
             const data = {
-                username: this.username,
+                nom: this.nom,
+                prenom: this.prenom,
                 email: this.email,
                 password: this.password,
                 password_confirm: this.password_confirm
@@ -53,8 +57,7 @@ export default {
         }
     }
 }
-
-    
+  
 </script>
 
 <style scoped>

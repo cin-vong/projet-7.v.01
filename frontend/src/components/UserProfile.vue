@@ -1,12 +1,11 @@
 <template>
     <div class="profile">
         <div class="profile-info">
-            <h2>Bonjour,</h2>
-        <h3 v-if="user">{{user.username}}</h3>
+            <h2>Bonjour,</h2>  
+        <h3 v-if="nom">{{user.nom}}</h3>
+        <h3 v-if="prenom">{{user.prenom}}</h3>
         </div>
-
         <div class="delete-profile" @click="deleteUser()">Supprimer le compte</div>
-
         <router-link to="/post" class="active">Vos publications</router-link>
     </div>
 </template>
@@ -16,10 +15,26 @@ import router from "../router"
 import axios from 'axios';
 export default {
   name: 'UserProfile',
+data(){
+  return {
+    data:JSON.parse(localStorage.setItem('user')),
+        nom:"",
+        prenom:""
+  }
+},
+mounted(){
+    //Appel de l'api pour l'affichage de l'utilisateur
+    let data = JSON.parse(localStorage.setItem('user'))
+     axios.get(`http://localhost:3000/api/user/${data.id}`)
+        .then(response => {
+          console.log(response.data)
+          this.user = response.data
+        })
+        .catch(error => console.log(error)) 
+},
   methods: {
-    deleteUser(){
-  
-      axios.delete(`http://localhost:3000/api/user/profile`,
+    deleteUser: function(id){
+      axios.delete(`http://localhost:3000/api/user/profile/${id}`,
           {
             headers: {
               'Content-Type': 'application/json',

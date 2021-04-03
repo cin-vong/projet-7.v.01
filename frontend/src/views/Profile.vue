@@ -3,7 +3,6 @@
         <AccueilLogin v-if="!connected"/>
         <EnTete v-if="connected"/>
         <UserProfile v-if="connected"/>
-        <UserPosts v-if="connected"/>
         
     </div>
 </template>
@@ -13,7 +12,6 @@
 import AccueilLogin from '@/components/AccueilLogin.vue';
 import EnTete from '@/components/EnTete.vue';
 import UserProfile from '@/components/UserProfile.vue';
-import UserPosts from '@/components/UserPosts.vue';
 
 export default {
     name: 'Profile',
@@ -21,8 +19,7 @@ export default {
     components: {
         AccueilLogin,
         EnTete,
-        UserProfile,
-        UserPosts
+        UserProfile
   },
 
   data() {

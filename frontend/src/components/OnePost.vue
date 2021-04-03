@@ -56,7 +56,7 @@ export default {
             .then(res => {
                 this.post = res.data[0];
 
-                if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
+                if(this.$user.authoname === this.post.authoname || this.$user.roleAdmin == 1){
                     this.authorized = true;
                  }
 

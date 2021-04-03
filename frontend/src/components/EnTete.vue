@@ -5,7 +5,6 @@
             <img src="../assets/logo.png" alt="Groupomania logo">
         </h1>
         </router-link>
-
         <nav>
             <router-link to='/profile'>
                 <div>Mon compte</div>

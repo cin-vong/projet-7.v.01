@@ -3,9 +3,9 @@
         <nav><router-link to="/" class="active">Inscription</router-link> | <router-link to="/login">Connection</router-link></nav>
         <form @submit.prevent = login()>
 
-            <input id="login-email" type="text" placeholder="Email" required>
+            <input id="login-email" type="text"  v-model="email" placeholder="Email" required>
             
-            <input id="login-password" type="password" placeholder="Mot de passe" required>
+            <input id="login-password" type="password"  v-model="password" placeholder="Mot de passe" required>
 
             <button id="login-btn" type="submit">Connexion</button>
 
@@ -16,6 +16,7 @@
 <script>
 import router from "../router"   
 import axios from 'axios'
+
 export default {
     name: 'AccueilLogin',
     data(){
@@ -26,39 +27,26 @@ export default {
     },
     methods: {
         login(){
-            const email = document.getElementById("login-email").value;
-            const password = document.getElementById("login-password").value;
-
-            axios.post(`http://localhost:3000/api/user/login`,
-                {
-                    email,
-                    password
-                },
-                {
-                    headers: {
-                        'Content-Type': 'application/json'
+            const data = {
+                email: this.email,
+                password: this.password
+            };
+            axios.post(`http://localhost:3000/api/user/login/`, data)
+                .then(
+                    res => {
+                        localStorage.setItem('user', JSON.stringify(res.data));
+                         //this.$store.dispatch('token',JSON.stringify(res.data));
+                         router.push("/profile")
+                        console.log(res)
                     }
-                }
-            )
-            .then(res => {
-               localStorage.setItem('user','token' ,JSON.stringify(res.data.token));
-                router.push("/profile")
-            })
-            .catch((error) => {
-                if (error.response.status === 404) {
-                    this.message = "Utilisateur inconnu.";
-                }
-                if (error.response.status === 401) {
-                    this.message = "Email ou mot de passe invalide.";
-                }
-                if (error.response.status === 500) {
-                    this.message = "Erreur serveur.";
-                }
-            });
+                ).catch(
+                    err => {
+                        console.log(err)
+                    }
+                )   
         }
     }
 }
-
 </script>
 
 <style scoped>

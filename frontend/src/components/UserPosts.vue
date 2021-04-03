@@ -1,7 +1,7 @@
 <template>
     <div class="UserPost">
         <div  v-for= "post in posts" :key="post.id">
-            <router-link :to="{ authorname: 'Post', params: { id: post.authorid } }">
+            <router-link :to="{ authorname: 'Post', params: { id: post.id } }">
                 <div class="post">
                     {{post.title}}
                 </div> 
@@ -28,18 +28,20 @@ export default {
     },
 
     methods: {
-        getUserPosts(){
-            
-            
-            axios.get(`http://localhost:3000/api/post/:id`,
+        getAllPosts(){
+            const token = localStorage.getItem('token');
+            axios.get(`http://localhost:3000/api/post/`,
                 {
                     headers: {
                         'Content-Type': 'application/json',
-                         'Authorization': `Bearer ${this.$token}`
+                         'Authorization': `Bearer ${token}`
                     }
                 }
             )
-            .then(res => this.post = res.data)
+            .then(res =>{
+                console.log(res.data)
+            })
+            .catch(error => console.log('erreur :' + error));
         }
     }
 
