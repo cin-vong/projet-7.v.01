@@ -1,6 +1,7 @@
 const express = require('express');
 const connection = require('./dbParams');
 const app = express();
+const cors = require('cors');
 const bodyParser = require('body-parser');
 
 //Routes
@@ -29,6 +30,7 @@ connection.connect(function(err){
 //Middleware
 
 app.use(bodyParser.json());
+app.use(cors())
 
 //Routes API
 app.use('/api/user', userRoutes);

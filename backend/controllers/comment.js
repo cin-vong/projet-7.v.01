@@ -3,8 +3,8 @@ const dbParams = require('../dbParams');
 exports.comment = (req, res, next) => {
     const comment = {
         authorname: req.body.authorname,
-        authorid: req.body.authorid,
-        commentary: req.body.commentary
+        commentary: req.body.commentary,
+        attachement: req.body.attachement
     }
     dbParams.query('INSERT INTO comments SET ?', comment, (err, result) => {
         if (err) {

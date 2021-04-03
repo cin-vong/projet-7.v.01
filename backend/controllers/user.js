@@ -62,7 +62,8 @@ exports.login = (req, res, next) => {
                   } else {
                       return res.status(200).json({
                           id: results[0].id,
-                          username: results[0].username,
+                          nom: results[0].nom,
+                          prenom: results[0].prenom,
                           email: results[0].email,
                           roleAdmin: results[0].roleAdmin,
                           token: jwt.sign(

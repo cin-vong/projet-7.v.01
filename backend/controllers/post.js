@@ -5,9 +5,9 @@ const fs = require('fs');
 exports.createPost = (req, res, next) => {
     const createPost = {
         authorname: req.body.authorname,
-        authorid: req.body.authorid,
         title: req.body.title,
-        content: req.body.content
+        content: req.body.content,
+        attachement: req.body.attachement
     }
     console.log(createPost);
 
@@ -42,8 +42,9 @@ exports.getOnePost = (req, res, next) => {
   })
 };
 
+//actualités
 exports.getAllPost = (req, res, next) => {
-    dbParams.query('SELECT * FROM post ORDER BY date DESC', [userId], (err, result) => {
+    dbParams.query('SELECT * FROM post ORDER BY date DESC', (err, result) => {
         if(err) {
             console.log(err);
             return res.status(400).json({ message : "Erreur interne"})
@@ -64,7 +65,7 @@ exports.deletePost = (req, res, next) => {
             fs.unlink(`images/${filename}`, () => {
                 dbParams.query('DELETE FROM post WHERE id=?', postId, function(err,result){
                     if (err){
-                        console.log(err);
+                        console.log(err)
                         return res.status(400).json({ message : "Erreur interne" })
                     } else {
                         dbParams.query('DELETE FROM comments WHERE postid=?', postId, function(err,result){
