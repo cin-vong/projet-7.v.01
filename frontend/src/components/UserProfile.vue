@@ -17,15 +17,14 @@ export default {
   name: 'UserProfile',
 data(){
   return {
-    data:JSON.parse(localStorage.setItem('user')),
+    data:JSON.parse(localStorage.getItem('user')),
         nom:"",
         prenom:""
   }
 },
 mounted(){
     //Appel de l'api pour l'affichage de l'utilisateur
-    let data = JSON.parse(localStorage.setItem('user'))
-     axios.get(`http://localhost:3000/api/user/${data.id}`)
+     axios.get(`http://localhost:3000/api/user/profile`)
         .then(response => {
           console.log(response.data)
           this.user = response.data
@@ -34,7 +33,7 @@ mounted(){
 },
   methods: {
     deleteUser: function(id){
-      axios.delete(`http://localhost:3000/api/user/profile/${id}`,
+      axios.delete(`http://localhost:3000/api/user/${id}`,
           {
             headers: {
               'Content-Type': 'application/json',

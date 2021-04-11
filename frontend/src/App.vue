@@ -15,6 +15,15 @@
   color: #091f43;
 }
 
+body {
+  background-image: linear-gradient(62deg, #7EBBFB 0%, #9C8BC9 100%);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  min-height: 100vh;
+  padding:32px;
+}
+
 #nav {
   padding: 30px;
 

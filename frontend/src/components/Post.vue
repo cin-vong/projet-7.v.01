@@ -1,5 +1,5 @@
 <template>
-    <div class="posts">
+    <div class="post">
         <article class="post" v-for = "post in posts" :key="post.id">
             <router-link :to="{ name: 'Post', params: { id: post.id } }">
                 <div class="post-header">
