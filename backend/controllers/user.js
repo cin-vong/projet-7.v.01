@@ -61,13 +61,13 @@ exports.login = (req, res, next) => {
                       return res.status(500).json({ message: "Email ou mot de passe incorrect"});
                   } else {
                       return res.status(200).json({
-                          id: results[0].id,
+                        authorname: results[0].id,
                           nom: results[0].nom,
                           prenom: results[0].prenom,
                           email: results[0].email,
                           roleAdmin: results[0].roleAdmin,
                           token: jwt.sign(
-                          { id: results[0].id},
+                          { authorname: results[0].id},
                           'RANDOM_TOKEN_SECRET',
                           { expiresIn : '24h'}
                           ) 
@@ -84,7 +84,8 @@ exports.login = (req, res, next) => {
 
 exports.getOneUser = (req, res, next) => {
   const userId = req.params.id
-  dbParams.query('SELECT * FROM user WHERE id="'+userId+'"', function(err,result){
+    console.log(userId);
+  dbParams.query(`SELECT * FROM users WHERE user.id = ${req.params.id}`, function(err,result){
     if (err){
         console.log(err);
         return res.status(400).json({ message : "Erreur interne" })
@@ -94,12 +95,12 @@ exports.getOneUser = (req, res, next) => {
 };
 
 exports.deleteUser = (req, res, next) => {
-  const userId = req.params.id
-  dbParams.query('DELETE FROM user WHERE id=?', userId, function(err,result){
-      if (err){
-          console.log(err);
-          return res.status(400).json({ message : "Erreur interne" })
-      }
-      return res.status(201).json({ message : "Utilisateur supprimé."})
-  })
+  dbParams.query(`DELETE FROM users WHERE user.id = ${req.params.id}`, (error, result, field) => {
+    if (error) {
+        return res.status(400).json({
+            error
+        });
+    }
+    return res.status(200).json(result);
+});
 };
