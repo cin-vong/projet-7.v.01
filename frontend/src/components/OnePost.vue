@@ -10,26 +10,7 @@
             <input type="text" id="modify-title" v-model="this.post.title">
 
             <label for="modify-content">Modifier le contenu :</label>
-            <editor 
-                :initialValue="this.post.content"
-                apiKey="pwm5eqs0wnsqf0ip208nkercdytlgj4hyr2nx8544cd44c8k"
-                v-model="modifiedContent"
-                :init="{
-                menubar: false,
-                plugins: [
-                    'advlist autolink lists link',
-                    'searchreplace visualblocks code fullscreen',
-                    'print preview anchor insertdatetime media',
-                    'paste code help wordcount table'
-                ],
-                toolbar:
-                    'undo redo | formatselect | bold italic | \
-                    alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help'
-                }"
-            >
-                <textarea id="modify-content" v-model="this.post.content"></textarea>
-            </editor>
+
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -42,7 +23,7 @@
 
 <script>
 import axios from 'axios';
-import Editor from '@tinymce/tinymce-vue';
+
 
 export default {
     name: 'OnePost',
