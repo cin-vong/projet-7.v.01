@@ -13,26 +13,6 @@
 
                 <label for="newPost-content">Contenu</label>
                 
-                <editor
-                    apiKey="pwm5eqs0wnsqf0ip208nkercdytlgj4hyr2nx8544cd44c8k"
-                    v-model="content"
-                    :init="{
-                    menubar: false,
-                    plugins: [
-                        'advlist autolink lists link',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'paste code help wordcount table'
-                    ],
-                    toolbar:
-                        'undo redo | formatselect | bold italic | \
-                        alignleft aligncenter alignright | \
-                        bullist numlist outdent indent | help'
-                    }"
-                >
-                    <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
-                </editor>
-                
 
                 <button id="newPost-btn" type="submit" >Publier</button>
 
@@ -46,7 +26,6 @@
 
 <script>
 import axios from 'axios';
-import Editor from '@tinymce/tinymce-vue'
 
 export default {
     name: 'NewPost',
