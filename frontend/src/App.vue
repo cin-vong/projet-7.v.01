@@ -1,18 +1,12 @@
 <template>
   <div id="app">
-    <div id="nav">
-    </div>
     <router-view/>
   </div>
 </template>
 
-<style lang="scss">
-#app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #091f43;
+<style>
+html{
+  box-sizing: border-box;
 }
 
 body {
@@ -24,16 +18,20 @@ body {
   padding:32px;
 }
 
-#nav {
-  padding: 30px;
+#app {
+ font-family: Avenir, Helvetica, Arial, sans-serif;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  text-align: center;
+  color: #091f43;
+}
 
-  a {
-    font-weight: bold;
-    color: #2c3e50;
+a {
+  color: inherit;
+  text-decoration: none;
+}
 
-    &.router-link-exact-active {
-      color: #42b983;
-    }
-  }
+a.router-link-exact-active {
+  color: inherit;
 }
 </style>

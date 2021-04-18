@@ -1,10 +1,10 @@
 <template>
   <div class="post">
-   <img alt="Vue logo" src="../assets/logo.png">
     <AccueilLogin v-if="!connected"/>
-    <EnTete v-if="connected"/>
+
+    <Header v-if="connected"/>
     <OnePost v-if="connected"/>
-    <NewPosts v-if="connected"/>
+
     <Comments v-if="connected"/>
   </div>
 </template>
@@ -12,20 +12,19 @@
 <script>
 // @ is an alias to /src
 import AccueilLogin from '@/components/AccueilLogin.vue';
-import EnTete from '@/components/EnTete.vue';
+import Header from '@/components/Header.vue';
 import OnePost from '@/components/OnePost.vue';
 import Comments from '@/components/Comments.vue';
-import NewPosts from '@/components/NewPosts.vue';
+
 
 export default {
   name: 'Post',
 
   components: {
-    EnTete,
+    Header,
     AccueilLogin,
     OnePost,
-    Comments,
-    NewPosts
+    Comments
   },
 
   data() {
@@ -52,3 +51,4 @@ export default {
     this.checkConnected()
   }
 }
+</script>
