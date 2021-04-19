@@ -4,10 +4,8 @@
         <nav><router-link to="/" class="active">Connexion</router-link> | <router-link to="/signup">Inscription</router-link></nav>
         <form @submit.prevent = login()>
 
-            <label for="login-email">Email :</label>
             <input id="login-email" class="form-row__input" type="text" placeholder="Email" required>
             
-            <label for="login-password">Mot de passe :</label>
             <input id="login-password" class="form-row__input" type="password" placeholder="Mot de passe" required>
 
             <div class="error-message">{{message}}</div>
@@ -149,19 +147,5 @@ export default {
         background-color: rgba(255, 0, 0, 0.301);
     }
 
-    label{
-        font-size: 0.8rem;
-        font-weight: bold;
-        color: rgb(109, 109, 109);
-        text-align: left;
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
     
 </style>

@@ -39,10 +39,10 @@ export default {
             const nom = document.getElementById("signup-nom").value;
             const prenom = document.getElementById("signup-prenom").value;
             const password = document.getElementById("signup-password").value;
-            const passwordVerif = document.getElementById("signup-password-verification").value;
+            const passwordConfirm = document.getElementById("signup-password-verification").value;
             const email = document.getElementById("signup-email").value;
 
-            if(password === passwordVerif){
+            if(password === passwordConfirm){
                 axios.post(`http://localhost:3000/api/auth/signup`,
                     {
                         nom,
@@ -67,7 +67,7 @@ export default {
                     }  
                 });
             }
-            else if( password != passwordVerif){
+            else if( password != passwordConfirm){
                 this.message = "Vérifier le mot de passe";
             }
             
@@ -158,19 +158,5 @@ export default {
         transform: scale(1.025);
     }
 
-    label{
-        font-size: 0.8rem;
-        font-weight: bold;
-        color: rgb(109, 109, 109);
-        text-align: left;
-        border: 0;
-        clip: rect(0 0 0 0);
-        height: 1px;
-        margin: -1px;
-        overflow: hidden;
-        padding: 0;
-        position: absolute;
-        width: 1px;
-    }
     
 </style>
