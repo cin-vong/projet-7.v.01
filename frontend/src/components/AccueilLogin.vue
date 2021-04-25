@@ -58,7 +58,7 @@ export default {
                     this.message = "Email ou mot de passe invalide.";
                 }
                 if (error.response.status === 500) {
-                    this.message = "Erreur serveur.";
+                    this.message = "Utilisateur non inscrit.";
                 }
             });
         }
@@ -76,7 +76,6 @@ export default {
 
     .screen-responsive{
     max-width: 100%;
-    width: 540px;
     background:white;
     border-radius: 16px;
     padding:32px;

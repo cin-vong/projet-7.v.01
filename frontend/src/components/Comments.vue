@@ -25,7 +25,7 @@
 import axios from 'axios';
 
 export default {
-    names: 'Comments',
+    name: 'Comments',
 
     data(){
         return{
@@ -43,7 +43,7 @@ export default {
             const userId = this.$user.userId;
             const content = document.getElementById('new-comment').value;
 
-            axios.post(`http://localhost:3000/api/comments/${postId}/comment/`,
+            axios.post(`http://localhost:3000/api/posts/${postId}/comment/`,
                 {
                     userId,
                     content
@@ -150,7 +150,7 @@ export default {
 
     .comment-info span{
         cursor: pointer;
-        color: rgb(255, 0, 0);
+        color: #950913;
         font-weight: bold;
     }
 

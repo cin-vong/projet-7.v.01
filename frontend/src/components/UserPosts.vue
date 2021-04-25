@@ -54,7 +54,7 @@ export default {
 
     .post{
         padding: 20px 20px 20px 30px;
-        border-left: 5px solid red;
+        border-left: 2px solid #950913;
         margin-top: 20px;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
         text-align: left;

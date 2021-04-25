@@ -10,7 +10,26 @@
             <input type="text" id="modify-title" v-model="this.post.title">
 
             <label for="modify-content">Modifier le contenu :</label>
-
+            <editor 
+                :initialValue="this.post.content"
+                apiKey="wl4x61cpwc9upmhjgvieryy7lljn5fqq20vyu93ngtjghwby"
+                v-model="modifiedContent"
+                :init="{
+                menubar: false,
+                plugins: [
+                    'advlist autolink lists link',
+                    'searchreplace visualblocks code fullscreen',
+                    'print preview anchor insertdatetime media',
+                    'paste code help wordcount table'
+                ],
+                toolbar:
+                    'undo redo | formatselect | bold italic | \
+                    alignleft aligncenter alignright | \
+                    bullist numlist outdent indent | help'
+                }"
+            >
+                <textarea id="modify-content" v-model="this.post.content"></textarea>
+            </editor>
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -23,7 +42,7 @@
 
 <script>
 import axios from 'axios';
-
+import Editor from '@tinymce/tinymce-vue';
 
 export default {
     name: 'OnePost',
@@ -60,7 +79,7 @@ export default {
             .then(res => {
                 this.post = res.data[0];
 
-                if(this.$user.userId === this.post.userId || this.$user.admin == 1){
+                if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
                     this.authorized = true;
                  }
 
@@ -116,12 +135,12 @@ export default {
         max-width: 800px;
         text-align: left;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
-        border-bottom: solid red 5px;
+        border-bottom: solid #950913 5px;
     }
 
     .post-title {
         margin: 0;
-        color: red;
+        color: #950913;
         font-size: 2rem;
     }
 
@@ -139,13 +158,13 @@ export default {
         max-width: 800px;
         text-align: left;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
-        border-bottom: solid red 5px;
+        border-bottom: solid #950913 2px;
     }
 
     #modify-title {
         margin: 0;
         margin-bottom: 20px;
-        color: red;
+        color: #950913;
         font-size: 2rem;
     }
 
@@ -172,7 +191,7 @@ export default {
     }
 
     .delete-btn{
-        background-color: red !important;
+        background-color: #950913 !important;
     }
 
     label{
@@ -188,5 +207,12 @@ export default {
         padding: 0;
         position: absolute;
         width: 1px;
+    }
+
+     @media (max-width: 670px) {
+        .post-wrapper{
+            flex-direction: column;
+            padding: 30px 20px 20px 20px;
+        }
     }
 </style>

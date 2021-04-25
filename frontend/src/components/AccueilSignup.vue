@@ -87,7 +87,6 @@ export default {
 
     .screen-responsive{
     max-width: 100%;
-    width: 540px;
     background:white;
     border-radius: 16px;
     padding:32px;

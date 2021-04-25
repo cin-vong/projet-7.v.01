@@ -4,7 +4,7 @@
             <router-link :to="{ name: 'Post', params: { id: post.id } }">
                 <div class="post-header">
                     <span class="post-info">Posté le {{dateFormat(post.date)}} par {{post.prenom}} {{post.nom}}</span>
-                    <span class="post-modify" v-if="post.userId == $user.userId || $user.admin == 1">Modifier</span> 
+                    <span class="post-modify" v-if="post.userId == $user.userId || $user.roleAdmin == 1">Modifier</span> 
                 </div>  
                 <h2 class="post-title">{{post.title}}</h2>
                 <div class="post-content" v-html="characterLimit(post.content)"></div>
@@ -86,7 +86,7 @@ export default {
         position: relative;
         padding: 20px 20px 20px 30px;
         margin-bottom: 30px;
-        border-left: 5px solid red;
+        border-left: 2px solid #950913;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
         text-align: left;
         transition-duration: .1s;
@@ -108,16 +108,23 @@ export default {
     }
 
     .post-modify{
-        color: rgb(219, 17, 17);
+        color: #950913;
         font-size: 1rem;
         font-weight: bold;
     }
 
     .post-title{
-        color: red;
+        color: #950913;
     }
 
     .post-content{
         font-size: .9rem;
+    }
+
+     @media (max-width: 670px) {
+        .posts{
+            flex-direction: column;
+            padding: 30px 20px 20px 20px;
+        }
     }
 </style>

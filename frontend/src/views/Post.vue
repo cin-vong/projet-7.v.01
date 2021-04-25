@@ -2,7 +2,7 @@
   <div class="post">
     <AccueilLogin v-if="!connected"/>
 
-    <Header v-if="connected"/>
+    <EnTete v-if="connected"/>
     <OnePost v-if="connected"/>
 
     <Comments v-if="connected"/>
@@ -12,7 +12,7 @@
 <script>
 // @ is an alias to /src
 import AccueilLogin from '@/components/AccueilLogin.vue';
-import Header from '@/components/Header.vue';
+import EnTete from '@/components/EnTete.vue';
 import OnePost from '@/components/OnePost.vue';
 import Comments from '@/components/Comments.vue';
 
@@ -21,7 +21,7 @@ export default {
   name: 'Post',
 
   components: {
-    Header,
+    EnTete,
     AccueilLogin,
     OnePost,
     Comments

@@ -1,7 +1,7 @@
 <template>
   <div class="home">
     <AccueilLogin v-if="!connected"/>
-    <Header v-if="connected"/>
+    <EnTete v-if="connected"/>
     <NewPost v-if="connected"/>
     <Posts v-if="connected"/>
   </div>
@@ -11,7 +11,7 @@
 // @ is an alias to /src
 import AccueilLogin from '@/components/AccueilLogin.vue';
 import Posts from '@/components/Posts.vue';
-import Header from '@/components/Header.vue';
+import EnTete from '@/components/EnTete.vue';
 import NewPost from '@/components/NewPost.vue';
 
 export default {
@@ -20,7 +20,7 @@ export default {
   components: {
     AccueilLogin,
     Posts,
-    Header,
+    EnTete,
     NewPost
   },
 
