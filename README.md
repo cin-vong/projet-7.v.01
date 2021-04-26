@@ -15,6 +15,7 @@ DB_HOST=localhost
 DB_USER=your_databse_user
 DB_PASS=your_user_password
 DB_NAME=groupomania
+TOKEN=hHpK79ZV4N7YAbdj
 
 Ps: N'oublier pas de mettre sur gitignore.
 ----------
