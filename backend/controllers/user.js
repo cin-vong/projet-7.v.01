@@ -29,7 +29,7 @@ exports.signup = (req, res, next) => {
                     return res.status(400).json("Erreur interne")
                 }
                 if(result.length >= 1) {
-                    return res.status(500).json({ message: "Email déjà existante."});
+                    return res.status(401).json({ message: "Email déjà existante."});
                 } else {
                     connection.query(`INSERT INTO user SET ?`, user, (err, result) => {
                         if (err) {
