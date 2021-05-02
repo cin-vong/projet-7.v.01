@@ -12,7 +12,7 @@
         <div class="comments">
             <div class="comment" v-for="comment in comments" :key="comment.id">
             <div class="comment-info">Par {{comment.prenom}} {{comment.nom}} le {{dateFormat(comment.date)}} 
-                <span @click="deleteComment(comment.id)" v-if="comment.userId == $user.userId || $user.admin == 1" :key="comment.id">Supprimer</span>
+                <span @click="deleteComment(comment.id)" v-if="comment.userId == $user.userId || $user.roleAdmin == 1" :key="comment.id">Supprimer</span>
             </div>
             {{comment.content}}
             </div>

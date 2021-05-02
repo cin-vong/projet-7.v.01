@@ -15,7 +15,7 @@
                 
                 <editor
                     apiKey="wl4x61cpwc9upmhjgvieryy7lljn5fqq20vyu93ngtjghwby"
-                    v-model="content"
+                    v-model="content" 
                     :init="{
                     menubar: false,
                     plugins: [
@@ -30,7 +30,10 @@
                         bullist numlist outdent indent | help'
                     }"
                 >
-                    <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
+                   
+                <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
+                <label for="newPost-attachement">Metter une image</label>
+                <input id="newPost-attachement" placeholder="Contenu de votre image...">
                 </editor>
                 
 
@@ -59,6 +62,7 @@ export default {
         return{
             visible: false,
             content: '',
+            attachement: '',
         }
     },
 
@@ -66,6 +70,7 @@ export default {
         sendNewPost(){
             const title = document.getElementById("newPost-title").value;
             const content = this.content;
+            const attachement = this.attachement;
 
             console.log(content);
 
@@ -73,7 +78,8 @@ export default {
                     {
                         userId: this.$user.userId,
                         title,
-                        content
+                        content,
+                        attachement
                     },
                     {
                         headers: {
@@ -163,6 +169,14 @@ export default {
     }
 
     #newPost-content{
+        height: 200px;
+        width: calc(100% - 20px);
+        padding: 10px;
+        resize: none;
+        overflow-y: scroll;
+    }
+
+       #newPost-attachement{
         height: 200px;
         width: calc(100% - 20px);
         padding: 10px;
