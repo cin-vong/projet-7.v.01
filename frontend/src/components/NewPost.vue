@@ -30,12 +30,11 @@
                         bullist numlist outdent indent | help'
                     }"
                 >
-                   
                 <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
-                <label for="newPost-attachement">Metter une image</label>
-                <input id="newPost-attachement" placeholder="Contenu de votre image...">
-                </editor>
                 
+                </editor>
+                <label for="newPost-attachement">Metter une image</label>
+                <input id="newPost-attachement"  type="text" placeholder="Contenu de votre image...">
 
                 <button id="newPost-btn" type="submit" >Publier</button>
 
@@ -177,7 +176,7 @@ export default {
     }
 
        #newPost-attachement{
-        height: 200px;
+        height: 20px;
         width: calc(100% - 20px);
         padding: 10px;
         resize: none;
