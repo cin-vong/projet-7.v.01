@@ -22,12 +22,11 @@ app.use(bodyParser.json());
 app.use(helmet());
 app.use(cors());
 
-
 //Routes
 app.use('/api/auth', userRoutes);
 app.use('/api/posts', postRoutes);
 
 //Images
-app.use('/images', express.static(path.join(__dirname, 'images')))
+app.use('/images', express.static(path.join(__dirname, 'images')));
 
 module.exports = app;

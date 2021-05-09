@@ -1,9 +1,7 @@
-const fs = require("fs");
-
 const dbParams = require("../database_connect");
 // All post
 exports.getAllPost = (req, res, next) => {
-    dbParams.query('SELECT user.nom, user.prenom, posts.id, posts.userId, posts.title, posts.content,posts.attachement, posts.date AS date FROM user INNER JOIN posts ON user.id = posts.userId ORDER BY date DESC', (error, result, field) => {
+    dbParams.query('SELECT user.nom, user.prenom, posts.id, posts.userId, posts.title, posts.content, posts.date AS date FROM user INNER JOIN posts ON user.id = posts.userId ORDER BY date DESC', (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
@@ -14,11 +12,7 @@ exports.getAllPost = (req, res, next) => {
 };
 // NewPost
 exports.newPost = (req, res, next) => {
-    dbParams.query(`INSERT INTO posts VALUES (NULL, '${req.body.userId}', '${req.body.title}', NOW(), '${req.body.content}', '${req.body.attachement}')`, (error, result, field) => {
-        const posts = new posts({
-            ...dbParams,
-            imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-          });
+    dbParams.query(`INSERT INTO posts VALUES (NULL, '${req.body.userId}', '${req.body.title}', NOW(), '${req.body.content}')`, (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
@@ -43,9 +37,6 @@ exports.getOnePost = (req, res, next) => {
 // Delete OnePost
 exports.deleteOnePost = (req, res, next) => {
     dbParams.query(`DELETE FROM posts WHERE posts.id = ${req.params.id}`, (error, result, field) => {
-    const filename = post.imageUrl.split('/images/')[1];
-      fs.unlink(`images/${filename}`, () => {
-        dbParams.deleteOne({ _id: req.params.id })
         if (error) {
             return res.status(400).json({
                 error
@@ -53,17 +44,10 @@ exports.deleteOnePost = (req, res, next) => {
         }
         return res.status(200).json(result);
     });
-    })
 };
 // Modify OnePost
 exports.modifyOnePost = (req, res, next) => {
-    dbParams.query(`UPDATE posts SET title = '${req.body.title}', content = '${req.body.content}' attachement = '${req.body.attachement}' WHERE posts.id = ${req.params.id}`, (error, result, field) => {
-        const dbParams = req.file ?
-    {
-      ...JSON.parse(req.body.attachement),
-      imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    } : { ...req.body };
-    attachement.updateOne({ _id: req.params.id }, { ...dbParams, _id: req.params.id })
+    dbParams.query(`UPDATE posts SET title = '${req.body.title}', content = '${req.body.content}' WHERE posts.id = ${req.params.id}`, (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
@@ -85,7 +69,7 @@ exports.getUserPosts = (req, res, next) => {
 };
 // New comment
 exports.newComment = (req, res, next) => {
-    dbParams.query(`INSERT INTO comments VALUES (NULL, ${req.body.userId}, ${req.params.id}, NOW(), '${req.body.content}' '${req.body.attachement}')`, (error, result, field) => {
+    dbParams.query(`INSERT INTO comments VALUES (NULL, ${req.body.userId}, ${req.params.id}, NOW(), '${req.body.content}')`, (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
@@ -96,7 +80,7 @@ exports.newComment = (req, res, next) => {
 };
 // Get all comments
 exports.getAllComments = (req, res, next) => {
-    dbParams.query(`SELECT user.id, user.nom, user.prenom, comments.id,comments.content, comments.attachement, comments.userId, comments.date FROM user INNER JOIN comments ON user.id = comments.userId WHERE comments.postId = ${req.params.id} ORDER BY comments.date DESC`,
+    dbParams.query(`SELECT user.id, user.nom, user.prenom, comments.id,comments.content, comments.userId, comments.date FROM user INNER JOIN comments ON user.id = comments.userId WHERE comments.postId = ${req.params.id} ORDER BY comments.date DESC`,
         (error, result, field) => {
             if (error) {
                 return res.status(400).json({
