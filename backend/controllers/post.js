@@ -12,7 +12,12 @@ exports.getAllPost = (req, res, next) => {
 };
 // NewPost
 exports.newPost = (req, res, next) => {
-    dbParams.query(`INSERT INTO posts VALUES (NULL, '${req.body.userId}', '${req.body.title}', NOW(), '${req.body.content}')`, (error, result, field) => {
+      const postObject = JSON.parse(req.body.post);
+    const newPost = {
+        ...postObject,
+        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
+    }
+    dbParams.query(`INSERT INTO posts VALUES, (NULL, '${req.body.userId}', '${req.body.title}', NOW(), '${req.body.content}', '${newPost}')`, (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
