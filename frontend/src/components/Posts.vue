@@ -86,10 +86,11 @@ export default {
         position: relative;
         padding: 20px 20px 20px 30px;
         margin-bottom: 30px;
-        border-left: 2px solid #950913;
+        border-left: 2px solid #d1515a;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
         text-align: left;
         transition-duration: .1s;
+        background-color: #fffffffd;
     }
 
     .post:hover{
@@ -108,13 +109,13 @@ export default {
     }
 
     .post-modify{
-        color: #950913;
+        color: #d1515a;
         font-size: 1rem;
         font-weight: bold;
     }
 
     .post-title{
-        color: #950913;
+        color: #d1515a;
     }
 
     .post-content{

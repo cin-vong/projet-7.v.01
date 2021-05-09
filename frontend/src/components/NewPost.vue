@@ -15,26 +15,29 @@
                 
                 <editor
                     apiKey="wl4x61cpwc9upmhjgvieryy7lljn5fqq20vyu93ngtjghwby"
-                    v-model="content" 
+                    v-model="content"
                     :init="{
                     menubar: false,
                     plugins: [
                         'advlist autolink lists link',
                         'searchreplace visualblocks code fullscreen',
                         'print preview anchor insertdatetime media',
+                        'image code',
                         'paste code help wordcount table'
                     ],
                     toolbar:
                         'undo redo | formatselect | bold italic | \
+                        undo redo | link image | code | \
                         alignleft aligncenter alignright | \
                         bullist numlist outdent indent | help'
+                        
                     }"
                 >
-                <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
-                
+                    <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
                 </editor>
-                <label for="newPost-attachement">Metter une image</label>
-                <input id="newPost-attachement"  type="text" placeholder="Contenu de votre image...">
+                
+                 <label for="new-attachement">Sélectionnez une image à publier</label>
+                    <input type="file" id="new-attachement" name="new-attachement" accept=".jpg, .jpeg, .png">
 
                 <button id="newPost-btn" type="submit" >Publier</button>
 
@@ -48,7 +51,8 @@
 
 <script>
 import axios from 'axios';
-import Editor from '@tinymce/tinymce-vue'
+import Editor from '@tinymce/tinymce-vue';
+
 
 export default {
     name: 'NewPost',
@@ -56,20 +60,20 @@ export default {
     components: {
       editor: Editor
     },
+    
 
     data(){
         return{
             visible: false,
             content: '',
-            attachement: '',
         }
     },
 
     methods: {
+
         sendNewPost(){
             const title = document.getElementById("newPost-title").value;
             const content = this.content;
-            const attachement = this.attachement;
 
             console.log(content);
 
@@ -77,8 +81,7 @@ export default {
                     {
                         userId: this.$user.userId,
                         title,
-                        content,
-                        attachement
+                        content
                     },
                     {
                         headers: {
@@ -92,6 +95,9 @@ export default {
         }
     }
 }
+
+
+
 </script>
 
 <style scoped> 
@@ -161,7 +167,7 @@ export default {
     }
 
     form label{
-        color: #950913;
+        color: #d1515a;
         font-weight: bold;
         font-size: 1.3rem;
         margin-bottom: 10px;
@@ -169,14 +175,6 @@ export default {
 
     #newPost-content{
         height: 200px;
-        width: calc(100% - 20px);
-        padding: 10px;
-        resize: none;
-        overflow-y: scroll;
-    }
-
-       #newPost-attachement{
-        height: 20px;
         width: calc(100% - 20px);
         padding: 10px;
         resize: none;
@@ -202,4 +200,16 @@ export default {
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     }
+
+    /* Image*/
+
+    label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    }
+
+    input,label {
+    margin: .4rem 0;
+    }
+
 </style>

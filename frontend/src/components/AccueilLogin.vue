@@ -4,13 +4,13 @@
         <nav><router-link to="/" class="active">Connexion</router-link> | <router-link to="/signup">Inscription</router-link></nav>
         <form @submit.prevent = login()>
 
-            <input id="login-email" class="form-row__input" type="text" placeholder="Email" required>
+            <input id="email" class="form-row__input" type="text" placeholder="Email" required>
             
-            <input id="login-password" class="form-row__input" type="password" placeholder="Mot de passe" required>
+            <input id="password" class="form-row__input" type="password" placeholder="Mot de passe" required>
 
             <div class="error-message">{{message}}</div>
 
-            <button id="login-btn" type="submit">Connexion</button>
+            <button id="ok-btn" type="submit">Connexion</button>
 
             
         </form>
@@ -32,8 +32,8 @@ export default {
     methods: {
 
         login(){
-            const email = document.getElementById("login-email").value;
-            const password = document.getElementById("login-password").value;
+            const email = document.getElementById("email").value;
+            const password = document.getElementById("password").value;
 
             axios.post(`http://localhost:3000/api/auth/login`,
                 {
@@ -75,6 +75,7 @@ export default {
   }
 
     .screen-responsive{
+    border: solid #d1515a;
     max-width: 100%;
     background:white;
     border-radius: 16px;
@@ -127,7 +128,7 @@ export default {
         text-align: center;
     }
 
-    #login-btn{
+    #ok-btn{
         padding: 10px;
         font-size: 1.1rem;
         color: white;
@@ -138,7 +139,7 @@ export default {
         cursor: pointer;
     }
 
-    #login-btn:hover{
+    #ok-btn:hover{
         transform: scale(1.025);
     }
 

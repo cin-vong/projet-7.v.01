@@ -1,5 +1,5 @@
 <template>
-    <div class="UserProfile">
+    <div class="Profile">
         <div class="profile-info">
             <h2>Bonjour,</h2>
             <span>{{this.$user.prenom}}</span> <br> <span>{{this.$user.nom}}</span> 
@@ -15,7 +15,7 @@
 import axios from 'axios';
 
 export default {
-    name: 'UserProfile',
+    name: 'Profile',
 
   methods: {
 
@@ -59,7 +59,7 @@ export default {
     }
 
     .delete-profile{
-      color: #950913;
+      color: #d1515a;
       margin-bottom: 30px;
       font-size: 24px;
       cursor: pointer;

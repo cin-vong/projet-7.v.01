@@ -5,18 +5,18 @@
             <nav><router-link to="/">Connexion</router-link> | <router-link to="/signup" class="active">Inscription</router-link></nav>
             
             <div class="form-row">
-            <input id="signup-nom" class="form-row__input" type="text" placeholder="Nom" required>
-            <input id="signup-prenom" class="form-row__input" type="text" placeholder="Prenom" required>
+            <input id="nom" class="form-row__input" type="text" placeholder="Nom" required>
+            <input id="prenom" class="form-row__input" type="text" placeholder="Prenom" required>
             </div>
 
-            <input id="signup-password" class="form-row__input" type="password" placeholder="Mot de passe" required>
-            <input id="signup-password-verification" class="form-row__input" type="password" placeholder="Vérifier mot de passe" required>
+            <input id="password" class="form-row__input" type="password" placeholder="Mot de passe" required>
+            <input id="password-verification" class="form-row__input" type="password" placeholder="Vérifier mot de passe" required>
         
-            <input id="signup-email" class="form-row__input" type="email" placeholder="Email" required>
+            <input id="email" class="form-row__input" type="email" placeholder="Email" required>
 
             <div class="error-message">{{message}}</div>
 
-            <button id="signup-btn" type="submit">S'inscrire</button>
+            <button id="ok-btn" type="submit">S'inscrire</button>
    
         </form>
     </div>
@@ -36,11 +36,11 @@ export default {
 
     methods: {
         signup(){
-            const nom = document.getElementById("signup-nom").value;
-            const prenom = document.getElementById("signup-prenom").value;
-            const password = document.getElementById("signup-password").value;
-            const passwordConfirm = document.getElementById("signup-password-verification").value;
-            const email = document.getElementById("signup-email").value;
+            const nom = document.getElementById("nom").value;
+            const prenom = document.getElementById("prenom").value;
+            const password = document.getElementById("password").value;
+            const passwordConfirm = document.getElementById("password-verification").value;
+            const email = document.getElementById("email").value;
 
             if(password === passwordConfirm){
                 axios.post(`http://localhost:3000/api/auth/signup`,
@@ -86,17 +86,18 @@ export default {
   }
 
     .screen-responsive{
+    border: solid #d1515a;
     max-width: 100%;
     background:white;
     border-radius: 16px;
     padding:32px;
     }
 
-        form input{
-        font-size: 1.05rem;
-        padding: 10px;
-        margin-bottom: 15px;
-        text-align: center;
+    form input{
+    font-size: 1.05rem;
+    padding: 10px;
+    margin-bottom: 15px;
+    text-align: center;
     }
 
      .form-row__input {
@@ -142,7 +143,7 @@ export default {
     }
 
 
-    #signup-btn{
+    #ok-btn{
         padding: 10px;
         font-size: 1.1rem;
         color: white;
@@ -153,7 +154,7 @@ export default {
         cursor: pointer;
     }
 
-    #signup-btn:hover{
+    #ok-btn:hover{
         transform: scale(1.025);
     }
 

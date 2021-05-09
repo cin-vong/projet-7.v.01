@@ -30,6 +30,10 @@
             >
                 <textarea id="modify-content" v-model="this.post.content"></textarea>
             </editor>
+
+            <label for="new-attachement">Sélectionnez une image à publier</label>
+             <input type="file" id="new-attachement" name="new-attachement" accept=".jpg, .jpeg, .png">
+
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -135,12 +139,12 @@ export default {
         max-width: 800px;
         text-align: left;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
-        border-bottom: solid #950913 5px;
+        border-bottom: solid #d1515a 5px;
     }
 
     .post-title {
         margin: 0;
-        color: #950913;
+        color: #d1515a;
         font-size: 2rem;
     }
 
@@ -158,13 +162,13 @@ export default {
         max-width: 800px;
         text-align: left;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
-        border-bottom: solid #950913 2px;
+        border-bottom: solid #d1515a 2px;
     }
 
     #modify-title {
         margin: 0;
         margin-bottom: 20px;
-        color: #950913;
+        color: #d1515a;
         font-size: 2rem;
     }
 
@@ -191,7 +195,7 @@ export default {
     }
 
     .delete-btn{
-        background-color: #950913 !important;
+        background-color: #d1515a !important;
     }
 
     label{
@@ -215,4 +219,16 @@ export default {
             padding: 30px 20px 20px 20px;
         }
     }
+
+    /* Image*/
+
+    label {
+    display: block;
+    font: 1rem 'Fira Sans', sans-serif;
+    }
+
+    input,label {
+    margin: .4rem 0;
+    }
+
 </style>
