@@ -12,21 +12,23 @@ exports.getAllPost = (req, res, next) => {
 };
 // NewPost
 exports.newPost = (req, res, next) => {
-      const postObject = JSON.parse(req.body.post);
-    const newPost = {
-        ...postObject,
-        imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
-    }
-    dbParams.query(`INSERT INTO posts VALUES, (NULL, '${req.body.userId}', '${req.body.title}', NOW(), '${req.body.content}', '${newPost}')`, (error, result, field) => {
+    const fileName = req.file.filename;
+    console.log(req.file);
+     const thepost = {
+         userId: req.body.userId,
+         title: req.body.title,
+         content: req.body.content,
+         attachmentUrl: fileName, 
+         //attachmentUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` 
+     }
+        
+    dbParams.query('INSERT INTO posts SET ?', user.nom, user.prenom, thepost, (error, result) => {
         if (error) {
-            return res.status(400).json({
-                error
-            });
-        }
-        return res.status(201).json({
-            message: 'Votre post à été publié !'
-        })
-    });
+            console.log(error)
+            return res.status(400).json ({ message: "Erreur interne" })
+    }
+        return res.status(400).json({ message: ' Votre message a bien été posté !'})
+    })
 };
 // OnePost
 exports.getOnePost = (req, res, next) => {
