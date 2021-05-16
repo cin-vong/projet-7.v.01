@@ -1,7 +1,9 @@
 const dbParams = require("../database_connect");
+const multer = require("../middlewares/multer-config")
+
 // All post
 exports.getAllPost = (req, res, next) => {
-    dbParams.query('SELECT user.nom, user.prenom, posts.id, posts.userId, posts.title, posts.content, posts.date AS date FROM user INNER JOIN posts ON user.id = posts.userId ORDER BY date DESC', (error, result, field) => {
+    dbParams.query('SELECT user.nom, user.prenom, posts.id, posts.userId, posts.title, posts.content , posts.attachmentUrl, posts.date AS date FROM user INNER JOIN posts ON user.id = posts.userId ORDER BY date DESC', (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
@@ -12,17 +14,17 @@ exports.getAllPost = (req, res, next) => {
 };
 // NewPost
 exports.newPost = (req, res, next) => {
-    const fileName = req.file.filename;
+    const fileName = multer.fileName;
     console.log(req.file);
      const thepost = {
          userId: req.body.userId,
          title: req.body.title,
          content: req.body.content,
          attachmentUrl: fileName, 
-         //attachmentUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}` 
+         imageUrl: `${req.protocol}://${req.get('host')}/images/${req.file.filename}`
      }
         
-    dbParams.query('INSERT INTO posts SET ?', user.nom, user.prenom, thepost, (error, result) => {
+    dbParams.query('INSERT INTO posts SET ?', posts.title, posts.content, posts.attachmentUrl, thepost, (error, result) => {
         if (error) {
             console.log(error)
             return res.status(400).json ({ message: "Erreur interne" })
