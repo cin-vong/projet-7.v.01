@@ -4,8 +4,6 @@
         <form @submit.prevent= newComment()>
             <label for="new-comment">Laisser un commentaire :</label>
             <textarea name="newComment" id="new-comment" placeholder="Laisser un commentaire..." required></textarea>
-             <label for="new-attachement">Sélectionnez une image à publier</label>
-                <input type="file" id="new-attachement" name="new-attachement" accept=".jpg, .jpeg, .png">
             <button type="submit" id="send-comment">Envoyer</button>
         </form>
 
@@ -135,7 +133,7 @@ export default {
 
     .comment{
         padding: 20px 20px 20px 30px;
-        border-left: 5px solid rgb(43, 42, 42);
+        border-left: 5px solid #d1515a;
         margin-top: 20px;
         box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
         text-align: left;
@@ -156,6 +154,10 @@ export default {
         font-weight: bold;
     }
 
+    #new-comment{
+    font-family: Avenir, Helvetica, Arial, sans-serif;
+    }
+
     label{
         font-size: 0.8rem;
         font-weight: bold;
@@ -170,11 +172,4 @@ export default {
         position: absolute;
         width: 1px;
     }
-
-    /* Image*/
-
-    input,label {
-    margin: .4rem 0;
-    }
-
 </style>

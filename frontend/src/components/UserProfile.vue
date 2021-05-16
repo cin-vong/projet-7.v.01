@@ -59,7 +59,7 @@ export default {
     }
 
     .delete-profile{
-      color: #d1515a;
+      color: #950913;
       margin-bottom: 30px;
       font-size: 24px;
       cursor: pointer;

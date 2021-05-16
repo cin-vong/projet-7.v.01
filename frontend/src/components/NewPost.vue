@@ -11,37 +11,13 @@
                 <label for="newPost-title">Titre</label>
                 <input id="newPost-title" type="text" placeholder="Titre de votre post..." required>
 
-                <label for="newPost-content">Contenu</label>
-                
-                <editor
-                    apiKey="wl4x61cpwc9upmhjgvieryy7lljn5fqq20vyu93ngtjghwby"
-                    v-model="content"
-                    :init="{
-                    menubar: false,
-                    plugins: [
-                        'advlist autolink lists link',
-                        'searchreplace visualblocks code fullscreen',
-                        'print preview anchor insertdatetime media',
-                        'image code',
-                        'paste code help wordcount table'
-                    ],
-                    toolbar:
-                        'undo redo | formatselect | bold italic | \
-                        undo redo | link image | code | \
-                        alignleft aligncenter alignright | \
-                        bullist numlist outdent indent | help'
-                        
-                    }"
-                >
-                    <textarea id="newPost-content" placeholder="Contenu de votre post..."></textarea>
-                </editor>
-                
-                 <label for="new-attachement">Sélectionnez une image à publier</label>
-                    <input type="file" id="new-attachement" name="new-attachement" accept=".jpg, .jpeg, .png">
+                <label for="newPost-content">Contenu</label>                 
+                <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..."></textarea>
 
-                <button id="newPost-btn" type="submit" >Publier</button>
+                <input type="file" @change="onFileChange"/>
+                <button id="newPost-btn" type="submit" @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile" >Publier</button>
 
-            </form>
+            </form>        
           </div>
       </div>
     </transition>
@@ -51,37 +27,42 @@
 
 <script>
 import axios from 'axios';
-import Editor from '@tinymce/tinymce-vue';
-
 
 export default {
     name: 'NewPost',
-
-    components: {
-      editor: Editor
-    },
-    
 
     data(){
         return{
             visible: false,
             content: '',
+            attachmentUrl: ''
         }
     },
 
-    methods: {
-
+    methods: { 
+   onFileChange(e) {
+      const selectedFile = e.target.files[0];
+       this.selectedFile = selectedFile;
+    },
+    onUploadFile() {
+      const formData = new FormData();
+      formData.append("file", this.selectedFile); 
+        },
         sendNewPost(){
             const title = document.getElementById("newPost-title").value;
             const content = this.content;
+            const attachmentUrl = this.attachmentUrl.filename;
+            
+            const formData = new FormData();
+            formData.append("file", this.filename);
+            console.log(content)
 
-            console.log(content);
-
-            axios.post(`http://localhost:3000/api/posts/`,
+            axios.post(`http://localhost:3000/api/posts/`, formData,
                     {
                         userId: this.$user.userId,
                         title,
-                        content
+                        content,
+                        attachmentUrl
                     },
                     {
                         headers: {
@@ -93,10 +74,10 @@ export default {
                 .then( this.visible = false)
                 .then(this.$root.$emit('Posts'));
         }
+        
     }
-}
-
-
+    
+};
 
 </script>
 
@@ -174,6 +155,7 @@ export default {
     }
 
     #newPost-content{
+        font-family: Avenir, Helvetica, Arial, sans-serif;
         height: 200px;
         width: calc(100% - 20px);
         padding: 10px;
@@ -200,16 +182,4 @@ export default {
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     }
-
-    /* Image*/
-
-    label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-    }
-
-    input,label {
-    margin: .4rem 0;
-    }
-
 </style>

@@ -86,7 +86,7 @@ export default {
   }
 
     .screen-responsive{
-    border: solid #d1515a;
+     border: solid #d1515a;
     max-width: 100%;
     background:white;
     border-radius: 16px;

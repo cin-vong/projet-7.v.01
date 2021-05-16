@@ -29,11 +29,8 @@
                 }"
             >
                 <textarea id="modify-content" v-model="this.post.content"></textarea>
+                
             </editor>
-
-            <label for="new-attachement">Sélectionnez une image à publier</label>
-             <input type="file" id="new-attachement" name="new-attachement" accept=".jpg, .jpeg, .png">
-
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -219,16 +216,4 @@ export default {
             padding: 30px 20px 20px 20px;
         }
     }
-
-    /* Image*/
-
-    label {
-    display: block;
-    font: 1rem 'Fira Sans', sans-serif;
-    }
-
-    input,label {
-    margin: .4rem 0;
-    }
-
 </style>
