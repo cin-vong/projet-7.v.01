@@ -15,8 +15,7 @@ DB_HOST=localhost
 DB_USER=your_databse_user
 DB_PASS=your_user_password
 DB_NAME=groupomania
-TOKEN=lHoK79ZV4N78Abdj
-
+TOKEN= Taper comme vous le souhaiter
 Ps: N'oublier pas de mettre sur gitignore.
 ----------
 
