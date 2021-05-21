@@ -19,6 +19,7 @@ app.use((req, res, next) => {
 //Security & data
 app.use(bodyParser.json());
 app.use(helmet());
+app.use(express.urlencoded({ extended: false }));
 app.use(cors());
 
 //Routes
