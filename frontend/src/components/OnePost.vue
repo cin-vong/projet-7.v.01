@@ -29,7 +29,6 @@
                 }"
             >
                 <textarea id="modify-content" v-model="this.post.content"></textarea>
-                
             </editor>
         </div>
 

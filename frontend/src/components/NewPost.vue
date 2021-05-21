@@ -6,7 +6,7 @@
       <div class="overlay" v-if="visible">
           <div class="form-wrapper">
             <span class="form-close"  @click="visible = false">Fermer</span>
-            <form class="newPost-form" @submit.prevent="sendNewPost()">
+            <form class="newPost-form" @submit.prevent="sendForm()">
 
                 <label for="newPost-title">Titre</label>
                 <input id="newPost-title" type="text" placeholder="Titre de votre post..." required>
@@ -14,10 +14,13 @@
                 <label for="newPost-content">Contenu</label>                 
                 <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..."></textarea>
 
-                <input type="file" @change="onFileChange"/>
-                <button id="newPost-btn" type="submit" @click="onUploadFile" class="upload-button" :disabled="!this.selectedFile" >Publier</button>
 
-            </form>        
+                <input name="image" type="file"  required v-on:change="setImage"/>
+                <label class="custom-file-label" for="image">Choisir une image</label>
+
+                <button id="newPost-btn" type="submit" >Publier</button>
+
+            </form>
           </div>
       </div>
     </transition>
@@ -28,42 +31,44 @@
 <script>
 import axios from 'axios';
 
+
 export default {
     name: 'NewPost',
+
+  
 
     data(){
         return{
             visible: false,
             content: '',
-            attachmentUrl: ''
+            attachmentUrl: '',
         }
     },
 
-    methods: { 
-   onFileChange(e) {
-      const selectedFile = e.target.files[0];
-       this.selectedFile = selectedFile;
+    methods: {
+
+     setImage: function (event) {
+      this.image = event.target.files[0]
     },
-    onUploadFile() {
-      const formData = new FormData();
-      formData.append("file", this.selectedFile); 
-        },
-        sendNewPost(){
+        sendForm(){
+            let formData = new FormData()
+            formData.append(`image`, this.image)
             const title = document.getElementById("newPost-title").value;
             const content = this.content;
-            const attachmentUrl = this.attachmentUrl.filename;
-            
-            const formData = new FormData();
-            formData.append("file", this.filename);
-            console.log(content)
+            const attachmentUrl = this.attachmentUrl;
 
-            axios.post(`http://localhost:3000/api/posts/`, formData,
-                    {
-                        userId: this.$user.userId,
-                        title,
-                        content,
-                        attachmentUrl
-                    },
+            formData.append('data',JSON.stringify({
+                userId: this.$user.userId,
+                 title,
+                 content,
+                 attachmentUrl
+                    }) );
+
+
+            console.log(content);
+            
+
+            axios.post(`http://localhost:3000/api/posts/`,formData,
                     {
                         headers: {
                             'Content-Type': 'application/json',
@@ -74,11 +79,8 @@ export default {
                 .then( this.visible = false)
                 .then(this.$root.$emit('Posts'));
         }
-        
     }
-    
-};
-
+}
 </script>
 
 <style scoped> 

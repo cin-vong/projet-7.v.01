@@ -1,8 +1,10 @@
 <template>
   <div class="post">
     <AccueilLogin v-if="!connected"/>
+
     <EnTete v-if="connected"/>
     <OnePost v-if="connected"/>
+
     <Comments v-if="connected"/>
   </div>
 </template>

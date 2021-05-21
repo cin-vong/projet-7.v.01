@@ -154,7 +154,7 @@ export default {
         font-weight: bold;
     }
 
-    #new-comment{
+     #new-comment{
     font-family: Avenir, Helvetica, Arial, sans-serif;
     }
 
