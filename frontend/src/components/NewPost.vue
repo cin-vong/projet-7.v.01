@@ -11,12 +11,11 @@
                 <label for="newPost-title">Titre</label>
                 <input id="newPost-title" type="text" placeholder="Titre de votre post..." required>
 
-                <label for="newPost-content">Contenu</label>                 
-                <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..."></textarea>
-
-
-                <input name="image" type="file"  required v-on:change="setImage"/>
                 <label class="custom-file-label" for="image">Choisir une image</label>
+                <input name="image" type="file"  required v-on:change="setImage"/>
+                
+                <label for="newPost-content">Contenu</label>                 
+                <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..." rows="5" cols="33"></textarea>
 
                 <button id="newPost-btn" type="submit" >Publier</button>
 
@@ -24,7 +23,6 @@
           </div>
       </div>
     </transition>
-
   </div>
 </template>
 
@@ -55,23 +53,23 @@ export default {
             formData.append(`image`, this.image)
             const title = document.getElementById("newPost-title").value;
             const content = this.content;
-            const attachmentUrl = this.attachmentUrl;
+            const attachmentUrl = this.image;
 
             formData.append('data',JSON.stringify({
                 userId: this.$user.userId,
                  title,
                  content,
                  attachmentUrl
-                    }) );
+                    }) 
+                );
 
 
             console.log(content);
             
-
             axios.post(`http://localhost:3000/api/posts/`,formData,
                     {
                         headers: {
-                            'Content-Type': 'application/json',
+                            'Content-Type': 'multipart/form-data',
                             'Authorization': `Bearer ${this.$token}`
                         }
                     }
@@ -161,7 +159,6 @@ export default {
         height: 200px;
         width: calc(100% - 20px);
         padding: 10px;
-        resize: none;
         overflow-y: scroll;
     }
 
