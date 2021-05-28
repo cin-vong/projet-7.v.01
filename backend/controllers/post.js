@@ -14,7 +14,8 @@ exports.getAllPost = (req, res, next) => {
 // NewPost
 exports.newPost = (req, res, next) => {
     const filename = req.file;
-    if(req.file && req.file.filename) {
+    console.log("ICI", filename);
+    if(req.file !=null && req.file.filename !=null) {
      filename = req.file.filename
     }
     console.log(req.file);
