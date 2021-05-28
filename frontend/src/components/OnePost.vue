@@ -10,26 +10,7 @@
             <input type="text" id="modify-title" v-model="this.post.title">
 
             <label for="modify-content">Modifier le contenu :</label>
-            <editor 
-                :initialValue="this.post.content"
-                apiKey="wl4x61cpwc9upmhjgvieryy7lljn5fqq20vyu93ngtjghwby"
-                v-model="modifiedContent"
-                :init="{
-                menubar: false,
-                plugins: [
-                    'advlist autolink lists link',
-                    'searchreplace visualblocks code fullscreen',
-                    'print preview anchor insertdatetime media',
-                    'paste code help wordcount table'
-                ],
-                toolbar:
-                    'undo redo | formatselect | bold italic | \
-                    alignleft aligncenter alignright | \
-                    bullist numlist outdent indent | help'
-                }"
-            >
-                <textarea id="modify-content" v-model="this.post.content"></textarea>
-            </editor>
+            <textarea id="modify-content" v-model="this.post.content"></textarea>
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -42,18 +23,14 @@
 
 <script>
 import axios from 'axios';
-import Editor from '@tinymce/tinymce-vue';
+
 
 export default {
     name: 'OnePost',
 
-    components: {
-      editor: Editor
-    },
 
     data(){
         return{
-            modifiedContent: '',
             post: [],
             authorized: false,
             modify: false
@@ -106,7 +83,7 @@ export default {
         modifyOnePost(){
             const postId = this.$route.params.id;
             const title = document.querySelector('#modify-title').value;
-            const content = this.modifiedContent;
+            const content = this.post.content;
             
             axios.put(`http://localhost:3000/api/posts/${postId}`,
                 {
@@ -169,9 +146,9 @@ export default {
     }
 
     #modify-content{
-        margin-top: 20px;
+        font-family: Avenir, Helvetica, Arial, sans-serif;
         height: 200px;
-        width: calc(100% - 22px);
+        width: calc(100% - 20px);
         padding: 10px;
         resize: none;
         overflow-y: scroll;
