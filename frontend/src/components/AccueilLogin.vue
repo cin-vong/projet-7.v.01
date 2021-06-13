@@ -12,7 +12,6 @@
 
             <button id="ok-btn" type="submit">Connexion</button>
 
-            
         </form>
     </div>
 </template>

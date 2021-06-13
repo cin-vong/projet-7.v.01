@@ -7,10 +7,10 @@
 
         <div class="modify-wrapper" v-if="modify">
             <label for="modify-title">Modifier le titre :</label>
-            <input type="text" id="modify-title" v-model="this.post.title">
+            <input type="text" id="modify-title" v-bind:value="this.post.title">
 
             <label for="modify-content">Modifier le contenu :</label>
-            <textarea id="modify-content" v-model="this.post.content"></textarea>
+            <textarea id="modify-content" v-bind:value="this.post.content"></textarea>
         </div>
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
@@ -28,10 +28,11 @@ import axios from 'axios';
 export default {
     name: 'OnePost',
 
-
     data(){
         return{
             post: [],
+            title:'',
+            content:'',
             authorized: false,
             modify: false
         }
@@ -55,6 +56,7 @@ export default {
             )
             .then(res => {
                 this.post = res.data[0];
+                this.title = this.post.tiltle;
 
                 if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
                     this.authorized = true;
@@ -85,6 +87,8 @@ export default {
             const title = document.querySelector('#modify-title').value;
             const content = this.post.content;
             
+            console.log( this.post.content);
+
             axios.put(`http://localhost:3000/api/posts/${postId}`,
                 {
                     postId,
