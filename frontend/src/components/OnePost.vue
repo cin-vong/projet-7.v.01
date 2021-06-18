@@ -15,7 +15,7 @@
 
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
         <button v-if="modify" @click="modify = false">Annuler</button>
-        <button v-if="modify" @click="modifyOnePost()">Publier les modifications</button>
+        <button v-if="modify" v-on:click.prevent="modifyOnePost">Publier les modifications</button>
         <button v-if="modify" class="delete-btn" @click="deleteOnePost()">Supprimer la publication</button>
     </div>
     
@@ -56,7 +56,8 @@ export default {
             )
             .then(res => {
                 this.post = res.data[0];
-                this.title = this.post.tiltle;
+                this.title = this.post.title;
+                this.content = this.post.content;
 
                 if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
                     this.authorized = true;
@@ -85,10 +86,12 @@ export default {
         modifyOnePost(){
             const postId = this.$route.params.id;
             const title = document.querySelector('#modify-title').value;
-            const content = this.post.content;
+            const content = document.querySelector('#modify-content').value;
             
-            console.log( this.post.content);
+        
 
+            console.log( this.post.content);
+            console.log('test');
             axios.put(`http://localhost:3000/api/posts/${postId}`,
                 {
                     postId,
@@ -102,7 +105,10 @@ export default {
                     }
                 }
             )
-            .then(location.href = "/");
+            .then(res =>{
+                console.log(res);
+                window.location = "/";
+            });
         },
     }
 }
