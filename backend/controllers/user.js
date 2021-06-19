@@ -85,11 +85,10 @@ exports.login = (req, res, next) => {
 
 // Delete User
 exports.deleteUser = (req, res, next) => {
-    dbParams.query(`DELETE FROM user WHERE user.id = ${req.params.id}`, (error, result, field) => {
+    dbParams.query(`DELETE FROM user WHERE id = ${req.params.id}`, (error, res, field) => {
         if (error) {
-            return res.status(400).json({
-                error
-            });
+            console.log(error);
+            return res.status(400).json({error});
         }
         return res.status(200).json(result);
     });
