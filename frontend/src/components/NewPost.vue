@@ -6,13 +6,16 @@
       <div class="overlay" v-if="visible">
           <div class="form-wrapper">
             <span class="form-close"  @click="visible = false">Fermer</span>
-            <form class="newPost-form" @submit.prevent="sendNewPost()">
+            <form class="newPost-form" @submit.prevent="sendForm()">
 
                 <label for="newPost-title">Titre</label>
-                <input id="newPost-title" type="text" placeholder="Titre de votre post..." required>
-
+                <input id="newPost-title" v-model="title" type="text" placeholder="Titre de votre post..." required>
+                
                 <label for="newPost-content">Contenu</label>                 
-                <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..."></textarea>
+                <textarea id="newPost-content"  v-model="content" placeholder="Contenu de votre post..." rows="5" cols="33"></textarea>
+
+                <label class="custom-file-label" for="image">Choisir une image</label>
+                <input name="image" id="image" type="file"  @change="setImage"/>
 
                 <button id="newPost-btn" type="submit" >Publier</button>
 
@@ -20,42 +23,52 @@
           </div>
       </div>
     </transition>
-
   </div>
 </template>
 
 <script>
 import axios from 'axios';
 
-
 export default {
     name: 'NewPost',
-
-  
 
     data(){
         return{
             visible: false,
+            title: '',
             content: '',
+            image: null,
         }
     },
 
     methods: {
-        sendNewPost(){
-            const title = document.getElementById("newPost-title").value;
-            const content = this.content;
 
-            console.log(content);
+     setImage: function (event) {
+      this.image = event.target.files[0]
+    },
+        sendForm(){
+            let formData = new FormData();
+              if (this.image !== null || "") {
+            formData.append(`userId`, this.$user.userId);
+            formData.append(`title`, this.title);
+            formData.append("image", this.image, this.image.filename);
+            formData.append(`content`, this.content);
+      } else {
+        formData.append(`userId`, this.$user.userId);
+            formData.append(`title`, this.title);
+            formData.append(`content`, this.content);
+      }
 
-            axios.post(`http://localhost:3000/api/posts/`,
-                    {
-                        userId: this.$user.userId,
-                        title,
-                        content
-                    },
+             console.log(this.$user.userId);
+              console.log(this.title);
+               console.log(this.content);
+                console.log(this.image);
+                console.log(formData.entries);
+            
+            axios.post(`http://localhost:3000/api/posts/`,formData,
                     {
                         headers: {
-                            'Content-Type': 'application/json',
+                            'Content-Type': 'multipart/form-data',
                             'Authorization': `Bearer ${this.$token}`
                         }
                     }
@@ -145,7 +158,6 @@ export default {
         height: 200px;
         width: calc(100% - 20px);
         padding: 10px;
-        resize: none;
         overflow-y: scroll;
     }
 
