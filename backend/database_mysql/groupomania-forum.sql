@@ -3,7 +3,7 @@
 -- https://www.phpmyadmin.net/
 --
 -- Host: localhost:3306
--- Generation Time: May 01, 2021 at 06:19 PM
+-- Generation Time: Jun 19, 2021 at 03:02 PM
 -- Server version: 5.7.24
 -- PHP Version: 7.4.1
 
@@ -70,7 +70,8 @@ INSERT INTO `posts` (`id`, `userId`, `title`, `date`, `content`) VALUES
 (22, 29, 'Salutation', '2021-04-19 11:34:02', '<p>Bonjour &agrave; tous !</p>\n<p>&nbsp;</p>\n<p>&nbsp;</p>'),
 (24, 20, 'Hello tous le monde', '2021-04-20 16:00:47', '<p>kfkgopskhgpoetjs</p>\n<p><img src=\"https://img-19.ccm2.net/8vUCl8TXZfwTt7zAOkBkuDRHiT8=/1240x/smart/b829396acc244fd484c5ddcdcb2b08f3/ccmcms-commentcamarche/20494859.jpg\" width=\"417\" height=\"278\" /></p>'),
 (27, 26, 'Salut à Tous !', '2021-04-23 13:10:40', '<p>Nouveaut&eacute; sur le forum</p>'),
-(29, 29, 'Test0000', '2021-04-26 11:58:29', '<p>Test5664date...</p>');
+(29, 29, 'Test0000', '2021-04-26 11:58:29', '<p>Test5664date...</p>'),
+(34, 26, 'Vacances !', '2021-06-14 12:21:24', 'Vacances !');
 
 -- --------------------------------------------------------
 
@@ -96,7 +97,8 @@ INSERT INTO `user` (`id`, `nom`, `prenom`, `password`, `email`, `roleAdmin`) VAL
 (25, 'Mael', 'Test', '$2b$10$lqsVf8XYhNKqCTKqq6ilteU2Nva9kyuUE58vFdxugEWur7UvAnGHG', 'maetest@test.com', '0'),
 (26, 'Decroix', 'Blandine', '$2b$10$KRX4L576KU9sd0ZkPeaFIeT0BUGMo4eelBzkeKAk3JIgRZ7gNuEBq', 'blandine@test.com', '0'),
 (29, 'Liddel', 'Alice', '$2b$10$tsUcUitGWn5AVWNrGxcqcOKq5K3u4wd1rhlqS9Xu4eX0QiEyEEDii', 'aliceliddel@test.com', '0'),
-(33, 'Astronomia', 'Alex', '$2b$10$6/K6OMgs9o54CqGchx.M4upQ5.4/Ao5GYLpWoobvZU/xjtKBtPtdu', 'alexastronomia@test.com', '0');
+(33, 'Astronomia', 'Alex', '$2b$10$6/K6OMgs9o54CqGchx.M4upQ5.4/Ao5GYLpWoobvZU/xjtKBtPtdu', 'alexastronomia@test.com', '0'),
+(38, 'Test', 'Test', '$2b$10$56eVugBxj2/ZfwtWacpVx.MZxLGoUH1Z8l6YGYr6U8BJpNONY.Daq', 'test@test.com', '0');
 
 --
 -- Indexes for dumped tables
@@ -137,13 +139,13 @@ ALTER TABLE `comments`
 -- AUTO_INCREMENT for table `posts`
 --
 ALTER TABLE `posts`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=30;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=46;
 
 --
 -- AUTO_INCREMENT for table `user`
 --
 ALTER TABLE `user`
-  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=34;
+  MODIFY `id` int(10) UNSIGNED NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=39;
 
 --
 -- Constraints for dumped tables
