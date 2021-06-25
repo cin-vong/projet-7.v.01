@@ -7,6 +7,7 @@
                     <span class="post-modify" v-if="post.userId == $user.userId || $user.roleAdmin == 1">Modifier</span> 
                 </div>  
                 <h2 class="post-title">{{post.title}}</h2>
+                <img :src="post.image">{{post.image}}
                 <div class="post-content" v-html="characterLimit(post.content)"></div>
             </router-link>
         </article>
