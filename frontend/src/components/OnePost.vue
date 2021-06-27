@@ -3,6 +3,7 @@
         <div class="post-wrapper" v-if="!modify">
             <h2 class="post-title">{{this.post.title}}</h2>
             <div class="post-content" v-html="this.post.content"></div>
+             <img :src="post.image">
         </div>
 
         <div class="modify-wrapper" v-if="modify">
@@ -11,9 +12,16 @@
 
             <label for="modify-content">Modifier le contenu :</label>
             <textarea id="modify-content" v-bind:value="this.post.content"></textarea>
+             <img id= "modify-image" :src="post.image">
         </div>
 
+        
         <button v-if="authorized && !modify" @click="modify = true">Modifier</button>
+
+        <label v-if="modify" class="custom-file-label" for="image">Choisir une image</label>
+        <input v-if="modify" name="image" id="image" type="file"  @change="setImage"/>
+
+
         <button v-if="modify" @click="modify = false">Annuler</button>
         <button v-if="modify" v-on:click.prevent="modifyOnePost">Publier les modifications</button>
         <button v-if="modify" class="delete-btn" @click="deleteOnePost()">Supprimer la publication</button>
@@ -33,6 +41,7 @@ export default {
             post: [],
             title:'',
             content:'',
+            image: null,
             authorized: false,
             modify: false
         }
@@ -83,11 +92,14 @@ export default {
             .then(location.href = "/");
         },
 
+       setImage: function (event) {
+      this.image = event.target.files[0]
+    },
         modifyOnePost(){
             const postId = this.$route.params.id;
             const title = document.querySelector('#modify-title').value;
             const content = document.querySelector('#modify-content').value;
-            
+            const image = document.querySelector('#modify-image').value;
         
 
             console.log( this.post.content);
@@ -96,7 +108,8 @@ export default {
                 {
                     postId,
                     title,
-                    content
+                    content,
+                    image
                 },
                 {
                     headers: {
