@@ -1,6 +1,8 @@
 <template>
+
     <div class="screen-responsive">
         <form @submit.prevent = signup()>
+            
             <img src="/assets/img/logo.png" alt="Groupomania-logo">
             <nav><router-link to="/">Connexion</router-link> | <router-link to="/signup" class="active">Inscription</router-link></nav>
             
@@ -20,6 +22,7 @@
    
         </form>
     </div>
+
 </template>
 
 <script>

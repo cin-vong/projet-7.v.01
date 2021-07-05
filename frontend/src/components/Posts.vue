@@ -1,4 +1,5 @@
 <template>
+
     <div class="posts">
         <article class="post" v-for = "post in posts" :key="post.id">
             <router-link :to="{ name: 'Post', params: { id: post.id } }">
@@ -12,6 +13,7 @@
             </router-link>
         </article>
     </div>
+    
 </template>
 
 <script>
@@ -126,7 +128,7 @@ export default {
      @media (max-width: 670px) {
         .posts{
             flex-direction: column;
-            padding: 30px 20px 20px 20px;
+            padding: 30px 20px 100px 100px;
         }
     }
 </style>

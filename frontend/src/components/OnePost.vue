@@ -1,4 +1,5 @@
 <template>
+
     <div class="onePost">
         <div class="post-wrapper" v-if="!modify">
             <h2 class="post-title">{{this.post.title}}</h2>
@@ -12,7 +13,7 @@
 
             <label for="modify-content">Modifier le contenu :</label>
             <textarea id="modify-content" v-bind:value="this.post.content"></textarea>
-             <img id= "modify-image" :src="post.image">
+             <img id= "modify-image" :src="post.image" alt="image" height="200" width="200">
         </div>
 
         
@@ -67,6 +68,8 @@ export default {
                 this.post = res.data[0];
                 this.title = this.post.title;
                 this.content = this.post.content;
+                this.image = this.post.image;
+
 
                 if(this.$user.userId === this.post.userId || this.$user.roleAdmin == 1){
                     this.authorized = true;
@@ -151,14 +154,14 @@ export default {
     /* Modify style */
 
     .modify-wrapper{
+        box-sizing: border-box;
+        background-color: white;
         display: flex;
         flex-direction: column;
-        margin: 50px auto;
-        padding: 30px;
-        max-width: 800px;
-        text-align: left;
-        box-shadow: 0px 0px 50px -7px rgba(0,0,0,0.1);
-        border-bottom: solid #d1515a 2px;
+        padding: 5%;
+        width: 800px;
+        height: 80%;
+        border-radius: 30px;
     }
 
     #modify-title {
@@ -211,8 +214,40 @@ export default {
 
      @media (max-width: 670px) {
         .post-wrapper{
+            margin-left: 10%;
+            width: 80%;
             flex-direction: column;
             padding: 30px 20px 20px 20px;
         }
+
+        #modify-title {
+        margin: 0;
+        width: calc(50% - 10px);
+        margin-left: 230px;
+        margin-bottom: 50px;
+        color: #d1515a;
+        font-size: 2rem;
+
+    }
+
+        #modify-content{
+        font-family: Avenir, Helvetica, Arial, sans-serif;
+        height: 200px;
+        width: calc(60% - 70px);
+        margin-left: 230px;
+        padding: 10px;
+        resize: none;
+        overflow-y: scroll;
+    }
+
+    #modify-image, #image{
+         margin-left: 230px;
+    }
+
+    #delete-btn{
+        background-color: #d1515a !important;
+        margin-left: 10px;
+    }
+        
     }
 </style>

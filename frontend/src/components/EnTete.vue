@@ -1,18 +1,20 @@
 <template>
+
     <div class="header">
         <router-link to='/'>
         <h1>
-            <img src="/assets/img/logo.png" alt="Groupomania-logo">
+            <img class="logoG" src="/assets/img/logo.png" alt="Groupomania-logo">
         </h1>
         </router-link>
 
         <nav>
             <router-link to='/profile'>
-                <div>Mon compte</div>
+                <div class="screen">Mon compte</div>
             </router-link>
-            <div id="disconnect-btn" @click = disconnect()>Se déconnecter</div>
+            <div class="screen" id="disconnect-btn" @click = disconnect()>Se déconnecter</div>
         </nav>
-    </div> 
+    </div>
+     
 </template>
 
 <script>
@@ -64,6 +66,14 @@ export default {
         .header{
             flex-direction: column;
             padding: 30px 20px 20px 20px;
+        }
+
+        .logoG{
+            margin-left: 120px;
+        }
+
+        .screen{
+            margin-left: 120px;
         }
     }
 </style>

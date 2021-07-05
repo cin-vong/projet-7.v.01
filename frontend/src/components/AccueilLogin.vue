@@ -1,4 +1,5 @@
 <template>
+
     <div class="screen-responsive">
         <img src="/assets/img/logo.png" alt="Groupomania-logo">
         <nav><router-link to="/" class="active">Connexion</router-link> | <router-link to="/signup">Inscription</router-link></nav>
@@ -14,6 +15,7 @@
 
         </form>
     </div>
+    
 </template>
 
 <script>

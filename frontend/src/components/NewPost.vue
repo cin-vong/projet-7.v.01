@@ -1,4 +1,5 @@
 <template>
+
   <div class="newPost">
       <div class="newPost-create-btn" @click="visible = true">Ajouter une nouvelle publication</div>
 
@@ -24,6 +25,7 @@
       </div>
     </transition>
   </div>
+  
 </template>
 
 <script>
@@ -162,9 +164,9 @@ export default {
     }
 
     #newPost-btn{
-        margin-top: 20px;
-        padding: 10px;
-        font-size: 1.1rem;
+        margin-top: -2%;
+        padding: 5px;
+        font-size: 1.3rem;
         color: white;
         background-color: rgb(43, 42, 42);
         border: none;
@@ -180,4 +182,22 @@ export default {
     .fade-enter, .fade-leave-to /* .fade-leave-active below version 2.1.8 */ {
     opacity: 0;
     }
+
+    @media (max-width: 670px) {
+      
+    .newPost-create-btn{
+        margin: 25px auto;
+        margin-left: 120px;
+        padding: 20px;
+        border-radius: 30px;
+        background-color: #0e213f;
+        color: white;
+        max-width: 750px;
+        font-size: 1.5rem;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+
+    }
+
 </style>

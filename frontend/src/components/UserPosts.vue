@@ -1,4 +1,5 @@
 <template>
+
     <div class="UserPost">
         <div  v-for= "post in posts" :key="post.id">
             <router-link :to="{ name: 'Post', params: { id: post.id } }">
@@ -9,6 +10,7 @@
         </div>
 
     </div>
+    
 </template>
 
 <script>
@@ -65,6 +67,14 @@ export default {
 
     .post:hover{
         box-shadow: 0px 0px 50px -7px rgba(0, 0, 0, 0.2);
+    }
+
+    
+     @media (max-width: 670px) {
+        .post{
+           width: 50%;
+           margin-left: 25%;
+        }
     }
 
 </style>

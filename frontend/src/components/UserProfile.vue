@@ -1,4 +1,5 @@
 <template>
+
     <div class="Profile">
         <div class="profile-info">
             <h2>Bonjour,</h2>
@@ -9,6 +10,7 @@
 
         <h3>Vos publications :</h3>
     </div>
+    
 </template>
 
 <script>

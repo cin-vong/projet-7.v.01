@@ -1,4 +1,5 @@
 <template>
+
   <div class="Comments">
       
         <form @submit.prevent= newComment()>
@@ -19,6 +20,7 @@
         </div>
         
   </div>
+  
 </template>
 
 <script>
@@ -171,5 +173,34 @@ export default {
         padding: 0;
         position: absolute;
         width: 1px;
+    }
+
+    @media (max-width: 670px) {
+     
+      .Comments{
+        max-width: 370px;
+        margin: 0 auto;
+        margin-left: 230px;
+        padding: 10px;
+    }
+
+    #new-comment{
+     width: 150%;
+     margin-left: -200px;
+    }
+
+    
+    #send-comment{
+    margin-left: -15px;
+        padding: 10px;
+        font-size: 1.1rem;
+        color: white;
+        background-color: rgb(43, 42, 42);
+        border: none;
+        border-radius: 10px;
+        transition-duration: 0.2s;
+        cursor: pointer;
+    }
+        
     }
 </style>
