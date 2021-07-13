@@ -14,7 +14,7 @@ Créer un fichier avec l'extention .ENV puis copier-les:
 DB_HOST=localhost
 DB_USER=your_databse_user
 DB_PASS=your_user_password
-DB_NAME=groupomania
+DB_NAME=groupomania 3
 TOKEN= Taper comme vous le souhaiter
 Ps: N'oublier pas de mettre sur gitignore.
 ----------
