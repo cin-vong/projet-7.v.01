@@ -48,7 +48,7 @@ exports.newPost = (req, res, next) => {
 // Delete OnePost
 exports.deleteOnePost = (req, res, next) => { 
     const postId = req.params.id;
-    dbParams.query('SELECT * FROM posts Where id=?', postId, (err, res) => {
+    dbParams.query('SELECT * FROM posts WHERE id=?', postId, (err, res) => {
         if (err) {
             console.log(err)
             return res.status(400).json("Erreur interne")
@@ -75,7 +75,7 @@ exports.modifyOnePost = (req, res, next) => {
         content: req.body.content,
         image:`${req.protocol}://${req.get('host')}/images/${req.file.filename}`
     }
-    dbParams.query(`UPDATE posts SET title = '${req.body.title}', content = '${req.body.content}' WHERE posts.id = ${req.params.id}`, modifiyPost, (error, result, field) => {
+    dbParams.query(`UPDATE posts SET title = '${req.body.title}', content = '${req.body.content}', image = '${req.body.image}'  WHERE posts.id = ${req.params.id}`, modifiyPost, (error, result, field) => {
         if (error) {
             return res.status(400).json({
                 error
