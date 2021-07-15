@@ -186,7 +186,7 @@ export default {
 
     #new-comment{
      width: 150%;
-     margin-left: -200px;
+     margin: 20px 0px 40px -190px;
     }
 
     

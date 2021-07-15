@@ -10,7 +10,6 @@ html{
 }
 
 body {
-  background-image: #ededed;
   display: flex;
   align-items: center;
   justify-content: center;

@@ -9,7 +9,7 @@
                 </div>  
                 <h2 class="post-title">{{post.title}}</h2>
                 <div class="post-content" v-html="characterLimit(post.content)"></div>
-                 <img :src="post.image">
+                 <img v-if="post.image" :src="post.image" alt="image">
             </router-link>
         </article>
     </div>
