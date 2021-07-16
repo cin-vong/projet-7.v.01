@@ -23,7 +23,7 @@ export default {
 
     deleteUser(){
       const userId = this.$user.userId;
-
+      alert("Votre compte est supprimé !");
       axios.delete(`http://localhost:3000/api/auth/${userId}`,
           {
             headers: {
